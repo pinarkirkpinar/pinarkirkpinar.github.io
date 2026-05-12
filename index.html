@@ -89,7 +89,7 @@
         .timeline { display: flex; justify-content: space-between; margin-top: 40px; position: relative; gap: 20px; }
         .t-item { background: var(--glass); padding: 20px; border-radius: 15px; width: 23%; border: 1px solid rgba(241,39,226,0.1); }
         .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
-        .p-card { background: var(--glass); padding: 30px; border-radius: 20px; border: 1px solid rgba(241,39,226,0.1); }
+        .p-card { background: var(--glass); border-radius: 20px; border: 1px solid rgba(241,39,226,0.1); transition: 0.3s; }
         .tech-icons { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px; }
         .tech-item { width: 60px; height: 60px; background: var(--glass); display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 28px; }
 
@@ -151,7 +151,6 @@
         </div>
     </section>
 
-    <!-- EKLEDİĞİMİZ EKSİK BÖLÜMLER BURADAN BAŞLIYOR -->
     <section id="about">
         <h2 class="section-title" lang="tr">Yolculuğum</h2><h2 class="section-title" lang="en">My Journey</h2>
         <div class="timeline">
@@ -162,20 +161,61 @@
         </div>
     </section>
 
+    <!-- GÖRSEL 23.14.17 TARZI PROJELER BÖLÜMÜ -->
     <section id="projects">
-        <h2 class="section-title" lang="tr">Projelerim</h2><h2 class="section-title" lang="en">My Projects</h2>
+        <h2 class="section-title" lang="tr">Öne Çıkan Projeler</h2>
+        <h2 class="section-title" lang="en">Featured Projects</h2>
+        <p style="text-align: center; margin-top: -30px; margin-bottom: 40px; opacity: 0.6; font-size: 14px;">
+            <span lang="tr">Web uygulamalarından mobil projelere kadar çalıştığım projelerden bir seçki</span>
+            <span lang="en">A selection of projects I've worked on, from web apps to mobile projects</span>
+        </p>
+
         <div class="project-grid">
-            <div class="p-card">
-                <h3>FlashCards</h3>
-                <p lang="tr">React Native ve Expo ile interaktif çalışma kartları.</p>
-                <p lang="en">Interactive flashcards with React Native.</p>
-                <br><a href="https://github.com/pinarkirkpinar/flashcards-app" target="_blank" style="color:var(--primary); font-weight: 700; text-decoration: none;">GitHub →</a>
+            <!-- FlashCards Projesi -->
+            <div class="p-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                <div style="height: 250px; background: linear-gradient(135deg, #2c1a4d 0%, #0f0f1a 100%); position: relative; display: flex; align-items: center; justify-content: center;">
+                    <span style="position: absolute; top: 15px; left: 15px; background: var(--primary); color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold;">Featured</span>
+                    <i class="fas fa-layer-group" style="font-size: 60px; color: var(--primary); opacity: 0.8;"></i>
+                </div>
+                <div style="padding: 25px; background: white;">
+                    <h3 style="font-size: 24px; margin-bottom: 10px; color: #333;">FlashCards</h3>
+                    <p style="font-size: 14px; color: #666; margin-bottom: 20px;" lang="tr">React Native ve Expo ile geliştirilmiş, öğrenmeyi kolaylaştıran interaktif çalışma kartları uygulaması.</p>
+                    <p style="font-size: 14px; color: #666; margin-bottom: 20px;" lang="en">An interactive flashcard application built with React Native and Expo to make learning easier.</p>
+                    
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 25px;">
+                        <span style="background: #f0f0f0; padding: 5px 12px; border-radius: 8px; font-size: 12px; color: #555;"><i class="fab fa-react" style="color: #61DAFB;"></i> React Native</span>
+                        <span style="background: #f0f0f0; padding: 5px 12px; border-radius: 8px; font-size: 12px; color: #555;">Expo</span>
+                        <span style="background: #f0f0f0; padding: 5px 12px; border-radius: 8px; font-size: 12px; color: #555;"><i class="fab fa-js" style="color: #F7DF1E;"></i> JavaScript</span>
+                    </div>
+
+                    <div style="display: flex; gap: 10px;">
+                        <a href="https://github.com/pinarkirkpinar/flashcards-app" target="_blank" style="flex: 1; text-align: center; padding: 12px; background: #f8f8f8; color: #333; text-decoration: none; border-radius: 12px; font-weight: 600; font-size: 14px; border: 1px solid #eee;"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="#" style="flex: 1; text-align: center; padding: 12px; background: linear-gradient(45deg, #f127e2, #f9d423); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; font-size: 14px; box-shadow: 0 5px 15px rgba(241, 39, 226, 0.2);"><i class="fas fa-external-link-alt"></i> <span lang="tr">Canlı Demo</span><span lang="en">Live Demo</span></a>
+                    </div>
+                </div>
             </div>
-            <div class="p-card">
-                <h3>PetShop</h3>
-                <p lang="tr">Dinamik PHP ve SQL tabanlı web projesi.</p>
-                <p lang="en">Dynamic web project with PHP & SQL.</p>
-                <br><a href="https://github.com/pinarkirkpinar/petshop-web" target="_blank" style="color:var(--primary); font-weight: 700; text-decoration: none;">GitHub →</a>
+
+            <!-- PetShop Projesi -->
+            <div class="p-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                <div style="height: 250px; background: linear-gradient(135deg, #1a2a4d 0%, #0f0f1a 100%); position: relative; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-paw" style="font-size: 60px; color: #4facfe; opacity: 0.8;"></i>
+                </div>
+                <div style="padding: 25px; background: white;">
+                    <h3 style="font-size: 24px; margin-bottom: 10px; color: #333;">PetShop</h3>
+                    <p style="font-size: 14px; color: #666; margin-bottom: 20px;" lang="tr">Dinamik PHP ve SQL tabanlı, modern arayüzlü ve ürün yönetim sistemli web projesi.</p>
+                    <p style="font-size: 14px; color: #666; margin-bottom: 20px;" lang="en">Dynamic PHP and SQL based web project with modern UI and product management system.</p>
+                    
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 25px;">
+                        <span style="background: #f0f0f0; padding: 5px 12px; border-radius: 8px; font-size: 12px; color: #555;"><i class="fab fa-php" style="color: #777BB4;"></i> PHP</span>
+                        <span style="background: #f0f0f0; padding: 5px 12px; border-radius: 8px; font-size: 12px; color: #555;"><i class="fas fa-database" style="color: #4479A1;"></i> MySQL</span>
+                        <span style="background: #f0f0f0; padding: 5px 12px; border-radius: 8px; font-size: 12px; color: #555;"><i class="fab fa-css3-alt" style="color: #264de4;"></i> CSS3</span>
+                    </div>
+
+                    <div style="display: flex; gap: 10px;">
+                        <a href="https://github.com/pinarkirkpinar/petshop-web" target="_blank" style="flex: 1; text-align: center; padding: 12px; background: #f8f8f8; color: #333; text-decoration: none; border-radius: 12px; font-weight: 600; font-size: 14px; border: 1px solid #eee;"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="#" style="flex: 1; text-align: center; padding: 12px; background: linear-gradient(45deg, #f127e2, #f9d423); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; font-size: 14px; box-shadow: 0 5px 15px rgba(241, 39, 226, 0.2);"><i class="fas fa-external-link-alt"></i> <span lang="tr">Canlı Demo</span><span lang="en">Live Demo</span></a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -191,7 +231,6 @@
             <div class="tech-item" style="color: #239120; font-weight: bold;">C#</div>
         </div>
     </section>
-    <!-- EKLENEN BÖLÜMLER BURADA BİTTİ -->
 
     <section id="contact" style="text-align: center;">
         <h2 class="section-title" lang="tr">İletişime Geç</h2><h2 class="section-title" lang="en">Get in Touch</h2>
