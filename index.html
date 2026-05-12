@@ -3,60 +3,288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pınar Kırkpınar | Portfolyo</title>
+    <title>Pınar Kırkpınar | Kreatif Portfolyo</title>
+    <!-- Gelişmiş İkon Paketi ve Google Fontlar -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Secular+One&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f4f7f6; }
-        header { text-align: center; padding: 40px 0; background: #fff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        h1 { color: #2c3e50; margin-bottom: 5px; }
-        .subtitle { color: #7f8c8d; font-size: 1.2em; }
-        section { background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 20px; }
-        h2 { border-bottom: 2px solid #3498db; padding-bottom: 10px; color: #2980b9; }
-        .project-card { border: 1px solid #eee; padding: 15px; border-radius: 8px; margin-bottom: 15px; transition: transform 0.2s; }
-        .project-card:hover { transform: scale(1.02); border-color: #3498db; }
-        .skills span { background: #3498db; color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.9em; margin-right: 5px; display: inline-block; margin-bottom: 5px; }
-        .contact-links a { margin-right: 15px; color: #3498db; text-decoration: none; font-weight: bold; }
+        /* Modern ve Canlı CSS Stilleri */
+        :root {
+            --primary-bg: #10101a;
+            --secondary-bg: #19192b;
+            --text-color: #e0e0f0;
+            --accent-neon: #00f2fe; /* Neon Cyan */
+            --accent-pink: #f127e2; /* Neon Pink */
+            --accent-gradient: linear-gradient(135deg, #00f2fe 0%, #f127e2 100%);
+            --glow: 0 0 10px var(--accent-neon), 0 0 20px var(--accent-neon);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 50% 50%, #1a1a3a 0%, #10101a 100%);
+        }
+        
+        /* Başlık ve Profil Kartı */
+        header {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            background: rgba(16, 16, 26, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px;
+        }
+        
+        .profil-picture {
+            width: 150px; height: 150px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            padding: 5px;
+            box-shadow: var(--glow);
+            margin-bottom: 25px;
+            animation: pulsate 1.5s infinite alternate;
+        }
+        
+        .profil-picture img {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+        }
+        
+        h1 {
+            font-family: 'Secular One', sans-serif;
+            font-size: 3.5rem;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: lightPulse 2s infinite;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: #b0b0d0;
+            font-weight: 300;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+        
+        /* Navigasyon ve Butonlar */
+        .btn-main {
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: transparent;
+            color: #fff;
+            border: 2px solid var(--accent-neon);
+            box-shadow: 0 0 15px var(--accent-neon);
+        }
+        
+        .btn-main:hover {
+            background: var(--accent-neon);
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px var(--accent-neon);
+        }
+        
+        /* Bölümler */
+        section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h2 {
+            font-family: 'Secular One', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            color: #fff;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+            left: 50%; transform: translateX(-50%);
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px; left: 0; width: 100%; height: 4px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+        
+        /* Projeler Kart Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .project-card {
+            background: var(--secondary-bg);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-pink);
+            box-shadow: 0 10px 30px rgba(241, 39, 226, 0.2);
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(135deg, rgba(241, 39, 226, 0.1) 0%, rgba(25, 25, 43, 0) 50%);
+            animation: rotateBg 10s infinite linear;
+            z-index: 0;
+        }
+        
+        .project-content { position: relative; z-index: 1; }
+        
+        .project-icon {
+            font-size: 3rem;
+            color: var(--accent-neon);
+            margin-bottom: 20px;
+        }
+        
+        .project-title { font-size: 1.6rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+        .project-desc { color: #c0c0e0; font-size: 1rem; margin-bottom: 20px; }
+        
+        .project-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--accent-pink); font-weight: 600; text-decoration: none;
+        }
+        .project-link:hover { color: #fff; }
+        
+        /* Beceriler Paneli */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+        
+        .skill-item {
+            background: var(--secondary-bg);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: all 0.3s;
+        }
+        
+        .skill-item:hover {
+            background: #20203a;
+            border-color: var(--accent-neon);
+            transform: scale(1.05);
+        }
+        
+        .skill-icon { font-size: 2.5rem; color: var(--accent-neon); margin-bottom: 10px; }
+        .skill-name { color: #fff; font-weight: 600; }
+        
+        /* İletişim */
+        #contact { text-align: center; padding-top: 150px; }
+        
+        .contact-links {
+            display: flex; justify-content: center; gap: 40px; margin-top: 30px;
+        }
+        
+        .contact-links a {
+            font-size: 2.5rem; color: #b0b0d0;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-links a:hover { color: var(--accent-neon); transform: scale(1.2); }
+        
+        /* Animasyonlar */
+        @keyframes pulsate { 0% { box-shadow: var(--glow); } 100% { box-shadow: 0 0 15px var(--accent-pink), 0 0 30px var(--accent-pink); } }
+        @keyframes lightPulse { 0%, 100% { text-shadow: var(--glow); } 50% { text-shadow: 0 0 15px var(--accent-pink), 0 0 30px var(--accent-pink); } }
+        @keyframes rotateBg { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        /* Mobil Uyumluluk */
+        @media (max-width: 768px) { h1 { font-size: 2.5rem; } h2 { font-size: 2rem; } .subtitle { font-size: 1rem; } }
     </style>
 </head>
 <body>
 
 <header>
+    <!-- Profil Fotoğrafı Taslağı -->
+    <div class="profil-picture">
+        <img src="https://via.placeholder.com/150" alt="Pınar Kırkpınar">
+    </div>
     <h1>Pınar Kırkpınar</h1>
-    <p class="subtitle">Bilgisayar Programcılığı Öğrencisi & Yazılım Geliştirici</p>
+    <p class="subtitle">İzmir Ekonomi Üniversitesi Bilgisayar Programcılığı Öğrencisi & Kreatif Yazılım Geliştirici</p>
+    <a href="#projects" class="btn-main">Projelerimi İncele <i class="fas fa-arrow-right"></i></a>
 </header>
 
 <section id="about">
-    <h2>Hakkımda</h2>
-    <p>Merhaba! Ben Pınar. İzmir Ekonomi Üniversitesi, Bilgisayar Programcılığı öğrencisiyim. Mobil uygulama geliştirme ve web teknolojileri ile ilgileniyorum. Bu site, yaptığım çalışmaları ve teknik becerilerimi sergilemek için hazırlanmıştır.</p>
+    <h2>Yaratıcı Vizyon</h2>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto; font-size: 1.1rem; color: #d0d0f0;">
+        Geleceğin teknolojilerini yaratma tutkusuyla yola çıkan bir geliştiriciyim. React Native ile mobil dünyayı, HTML5/CSS3 ile webi ve Unreal Engine ile sanal dünyaları harmanlıyorum. Basit kodlar yazmak yerine, kullanıcıyı içine çeken interaktif deneyimler tasarlamayı hedefliyorum.
+    </p>
 </section>
 
 <section id="projects">
-    <h2>Yaptığım Projeler</h2>
-    
-    <div class="project-card">
-        <h3>FlashCards - Mobil Uygulama</h3>
-        <p>React Native ve Expo kullanarak geliştirdiğim, kelime ezberleme ve çalışma kartları uygulaması.</p>
-        <a href="https://github.com/pinarkirkpinar/flashcards-app" target="_blank">Projeyi İncele →</a>
-    </div>
+    <h2>Seçilmiş İşler</h2>
+    <div class="projects-grid">
+        
+        <div class="project-card">
+            <div class="project-content">
+                <i class="fas fa-mobile-alt project-icon"></i>
+                <div class="project-title">FlashyCards</div>
+                <div class="project-desc">React Native & Expo ile geliştirilmiş interaktif kelime ezberleme uygulaması.</div>
+                <a href="https://github.com/pinarkirkpinar/flashcards-app" target="_blank" class="project-link">GitHub Deposu <i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </div>
 
-    <div class="project-card">
-        <h3>PetShop - Web Sitesi</h3>
-        <p>İnternet Programcılığı dersi için hazırladığım, dinamik ürün listeleme özelliğine sahip web sitesi.</p>
-        <a href="https://github.com/pinarkirkpinar/petshop-web" target="_blank">Projeyi İncele →</a>
+        <div class="project-card">
+            <div class="project-content">
+                <i class="fas fa-store-alt project-icon"></i>
+                <div class="project-title">PetShop Web Projesi</div>
+                <div class="project-desc">Dinamik ürün listeleme ve modern arayüze sahip web uygulaması.</div>
+                <a href="https://github.com/pinarkirkpinar/petshop-web" target="_blank" class="project-link">GitHub Deposu <i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </div>
+        
     </div>
 </section>
 
 <section id="skills">
-    <h2>Yetenekler</h2>
-    <div class="skills">
-        <span>React Native</span> <span>Python</span> <span>Java</span> <span>JavaScript</span> <span>HTML & CSS</span> <span>Git/GitHub</span>
+    <h2>Teknik Beceri Havuzu</h2>
+    <div class="skills-grid">
+        <div class="skill-item"><i class="fab fa-react skill-icon"></i><div class="skill-name">React Native</div></div>
+        <div class="skill-item"><i class="fab fa-js-square skill-icon"></i><div class="skill-name">JavaScript</div></div>
+        <div class="skill-item"><i class="fab fa-python skill-icon"></i><div class="skill-name">Python</div></div>
+        <div class="skill-item"><i class="fab fa-java skill-icon"></i><div class="skill-name">Java</div></div>
+        <div class="skill-item"><i class="fab fa-html5 skill-icon"></i><div class="skill-name">HTML5 / CSS3</div></div>
+        <div class="skill-item"><i class="fab fa-github skill-icon"></i><div class="skill-name">Git / GitHub</div></div>
+        <div class="skill-item"><i class="fas fa-cubes skill-icon"></i><div class="skill-name">Unreal Engine</div></div>
     </div>
 </section>
 
 <section id="contact">
-    <h2>İletişim</h2>
+    <h2>İletişim & Bağlantılar</h2>
+    <p>Dijital dünyada bir iz bırakmak veya yeni projeler konuşmak için bağlantı kurun:</p>
     <div class="contact-links">
-        <a href="https://github.com/pinarkirkpinar" target="_blank">GitHub Profilim</a>
-        <a href="mailto:pinar@email.com">E-posta</a>
+        <a href="https://github.com/pinarkirkpinar" target="_blank" title="GitHub Profile"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com" target="_blank" title="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+        <a href="mailto:pinar@email.com" title="Email Me"><i class="fas fa-envelope"></i></a>
     </div>
 </section>
 
