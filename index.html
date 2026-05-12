@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -7,188 +7,113 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #f127e2; --secondary: #f0f0f0; --bg: #fff5f8; 
-            --glass: rgba(255, 255, 255, 0.7); --text: #333; --sub: #888;
-        }
-        [data-theme="dark"] {
-            --bg: #0f0f1a; --glass: rgba(20, 20, 35, 0.8); --text: #fff; --sub: #aaa;
+            --primary: #f127e2; --bg-light: #fff5f8; --text-light: #333;
+            --bg-dark: #0f0f1a; --text-dark: #fff;
         }
         
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: var(--bg); color: var(--text); transition: 0.5s; overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--bg-light); color: var(--text-light); transition: 0.5s; overflow-x: hidden; }
+        body.dark-mode { background: var(--bg-dark); color: var(--text-dark); }
 
-        /* Navbar */
+        /* Mouse'u Takip Eden Parıltı */
+        #glow {
+            position: fixed; width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(241, 39, 226, 0.15) 0%, transparent 70%);
+            border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%);
+            z-index: 0; transition: 0.1s ease-out;
+        }
+
+        /* Üst Menü (Nav) - Ekran Resmi 22.41.09 Tarzı */
         nav { 
             display: flex; justify-content: space-between; align-items: center; 
-            padding: 20px 10%; position: sticky; top: 0; z-index: 1000;
-            background: var(--glass); backdrop-filter: blur(10px);
+            padding: 15px 8%; position: sticky; top: 0; z-index: 1000;
+            background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(241, 39, 226, 0.1);
         }
-        .logo { font-weight: 700; color: var(--primary); font-size: 24px; }
-        .nav-links a { margin: 0 15px; text-decoration: none; color: var(--text); font-size: 14px; font-weight: 500; }
+        body.dark-mode nav { background: rgba(15, 15, 26, 0.8); }
+
+        .logo { font-weight: 800; color: var(--primary); font-size: 22px; cursor: pointer; }
         
-        /* Hero Section */
-        .hero { 
-            height: 90vh; display: flex; flex-direction: column; 
-            justify-content: center; align-items: center; text-align: center;
-            background: radial-gradient(circle at 80% 20%, rgba(241, 39, 226, 0.15), transparent 40%);
-        }
-        .hero h1 { font-size: 80px; margin-bottom: 10px; color: var(--primary); }
-        .hero p { font-size: 24px; color: var(--sub); max-width: 600px; margin-bottom: 30px; }
-        .btn-group { display: flex; gap: 20px; }
-        .btn { 
-            padding: 12px 30px; border-radius: 50px; text-decoration: none; 
-            font-weight: 600; transition: 0.3s; 
-        }
-        .btn-primary { background: var(--primary); color: white; box-shadow: 0 10px 20px rgba(241, 39, 226, 0.3); }
-        .btn-secondary { border: 1px solid var(--primary); color: var(--primary); }
+        .nav-center { display: flex; gap: 30px; }
+        .nav-center a { text-decoration: none; color: inherit; font-size: 14px; font-weight: 500; opacity: 0.7; transition: 0.3s; }
+        .nav-center a:hover, .nav-center a.active { opacity: 1; color: var(--primary); border-bottom: 2px solid var(--primary); }
 
-        /* Journey Timeline */
-        .section { padding: 100px 10%; text-align: center; }
-        .timeline { 
-            display: flex; justify-content: space-between; position: relative; 
-            margin-top: 50px; padding: 20px 0;
-        }
-        .timeline::before { 
-            content: ''; position: absolute; top: 50%; left: 0; 
-            width: 100%; height: 2px; background: var(--primary); opacity: 0.3;
-        }
-        .t-item { background: var(--glass); padding: 20px; border-radius: 15px; width: 18%; border: 1px solid rgba(255,255,255,0.2); }
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .social-icons i { font-size: 18px; cursor: pointer; opacity: 0.6; transition: 0.3s; }
+        .social-icons i:hover { opacity: 1; color: var(--primary); }
 
-        /* Tech Icons */
-        .tech-stack { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 40px; }
-        .tech-card { 
-            width: 80px; height: 80px; background: var(--glass); 
-            border-radius: 15px; display: flex; justify-content: center; 
-            align-items: center; font-size: 30px; border: 1px solid rgba(255,255,255,0.3);
-            transition: 0.3s;
-        }
-        .tech-card:hover { transform: translateY(-10px); color: var(--primary); }
+        /* Tema ve Dil Seçici */
+        .controls { display: flex; align-items: center; gap: 10px; background: rgba(0,0,0,0.05); padding: 5px 15px; border-radius: 50px; border: 1px solid rgba(241,39,226,0.2); }
+        .dot { width: 20px; height: 20px; border-radius: 50%; cursor: pointer; border: 2px solid white; }
+        .dot.black { background: #0f0f1a; }
+        .dot.white { background: #ffffff; }
+        .dot.pink { background: var(--primary); }
 
-        /* Project Cards */
-        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 50px; }
-        .p-card { 
-            background: var(--glass); border-radius: 20px; overflow: hidden; 
-            text-align: left; border: 1px solid rgba(255,255,255,0.2);
-            transition: 0.4s;
-        }
-        .p-card:hover { transform: scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .p-img { width: 100%; height: 200px; background: #eee; }
-        .p-info { padding: 25px; }
-        .p-tags { margin-top: 15px; display: flex; gap: 8px; flex-wrap: wrap; }
-        .tag { font-size: 11px; padding: 4px 10px; background: rgba(241, 39, 226, 0.1); color: var(--primary); border-radius: 5px; }
+        /* Hero Kısmı */
+        .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; z-index: 1; }
+        .hero h1 { font-size: 70px; font-weight: 800; color: var(--primary); margin-bottom: 10px; }
+        .hero p { font-size: 20px; opacity: 0.7; max-width: 500px; line-height: 1.5; }
 
-        /* Language Switching Logic */
         .lang-en [lang="tr"], .lang-tr [lang="en"] { display: none; }
-        
-        /* Theme toggle */
-        .theme-switch { cursor: pointer; font-size: 20px; margin-left: 15px; }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="lang-tr" data-theme="light">
+<body class="lang-tr">
+
+    <div id="glow"></div>
 
     <nav>
-        <div class="logo">pincodes</div>
-        <div class="nav-links">
-            <a href="#home">Home</a>
+        <div class="logo">pınarkırkpınar</div>
+        
+        <div class="nav-center">
+            <a href="#home" class="active">Home</a>
             <a href="#about">About</a>
             <a href="#projects">Projects</a>
+            <a href="#social">Social Media</a>
             <a href="#contact">Contact</a>
-            <span class="theme-switch" onclick="toggleTheme()"><i class="fas fa-moon"></i></span>
-            <button onclick="toggleLang()" style="margin-left:10px; padding:5px; border-radius:5px; border:1px solid var(--primary); cursor:pointer;">TR/EN</button>
+        </div>
+
+        <div class="nav-right">
+            <div class="social-icons">
+                <a href="https://github.com/pinarkirkpinar" target="_blank" style="color:inherit;"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/pinarkirkpinar/" target="_blank" style="color:inherit; margin-left:15px;"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="controls">
+                <div class="dot black" onclick="setTheme('dark')"></div>
+                <div class="dot white" onclick="setTheme('light')"></div>
+                <div class="dot pink" onclick="toggleLang()"></div>
+            </div>
         </div>
     </nav>
 
     <div class="hero" id="home">
         <h1 lang="tr">Selam, Ben Pınar</h1>
         <h1 lang="en">Hi, I'm Pinar</h1>
-        <p lang="tr">Bilgisayar Programcılığı öğrencisiyim ve modern web deneyimleri inşa ediyorum.</p>
-        <p lang="en">I'm a Computer Programming student building modern web experiences.</p>
-        <div class="btn-group">
-            <a href="#contact" class="btn btn-primary" lang="tr">Konuşalım</a>
-            <a href="#contact" class="btn btn-primary" lang="en">Let's Talk</a>
-            <a href="#projects" class="btn btn-secondary" lang="tr">Projeleri Gör</a>
-            <a href="#projects" class="btn btn-secondary" lang="en">View Projects</a>
+        <p lang="tr">Building modern web experiences.</p>
+        <p lang="en">Building modern web experiences.</p>
+        <div style="margin-top: 30px; display: flex; gap: 15px;">
+            <button style="padding: 12px 25px; border-radius: 50px; border: none; background: var(--primary); color: white; font-weight: 600; cursor: pointer;">Let's Talk</button>
+            <button style="padding: 12px 25px; border-radius: 50px; border: 1px solid var(--primary); background: transparent; color: var(--primary); font-weight: 600; cursor: pointer;">View Projects</button>
         </div>
     </div>
 
-    <section class="section" id="about">
-        <h2 lang="tr">Yolculuğum</h2>
-        <h2 lang="en">My Journey</h2>
-        <div class="timeline">
-            <div class="t-item"><b>2023</b><br><span lang="tr">Lise Mezuniyeti</span><span lang="en">HS Graduate</span></div>
-            <div class="t-item"><b>2024</b><br><span lang="tr">Üniversite Başlangıç</span><span lang="en">University Start</span></div>
-            <div class="t-item"><b>2025</b><br><span lang="tr">Yazılım Geliştirme</span><span lang="en">Dev Journey</span></div>
-            <div class="t-item"><b>2026</b><br><span lang="tr">Gelecek</span><span lang="en">Future</span></div>
-        </div>
-    </section>
-
-    <section class="section">
-        <h2 lang="tr">Teknolojiler</h2>
-        <h2 lang="en">Technologies</h2>
-        <div class="tech-stack">
-            <div class="tech-card" title="JavaScript"><i class="fab fa-js"></i></div>
-            <div class="tech-card" title="React Native"><i class="fab fa-react"></i></div>
-            <div class="tech-card" title="PHP"><i class="fab fa-php"></i></div>
-            <div class="tech-card" title="Python"><i class="fab fa-python"></i></div>
-            <div class="tech-card" title="C#"><i class="fas fa-code"></i></div>
-            <div class="tech-card" title="SQL"><i class="fas fa-database"></i></div>
-        </div>
-    </section>
-
-    <section class="section" id="projects">
-        <h2 lang="tr">Öne Çıkan Projeler</h2>
-        <h2 lang="en">Featured Projects</h2>
-        <div class="project-grid">
-            <!-- FlashCards -->
-            <div class="p-card">
-                <div class="p-img" style="background: linear-gradient(45deg, #f127e2, #f9d423);"></div>
-                <div class="p-info">
-                    <h3>FlashCards</h3>
-                    <p lang="tr">React Native ile geliştirilmiş interaktif çalışma uygulaması.</p>
-                    <p lang="en">Interactive study app built with React Native.</p>
-                    <div class="p-tags"><span class="tag">React Native</span><span class="tag">Expo</span><span class="tag">JS</span></div>
-                    <br><a href="https://github.com/pinarkirkpinar/flashcards-app" target="_blank" class="btn btn-secondary" style="padding:5px 15px; font-size:12px;">GitHub</a>
-                </div>
-            </div>
-            <!-- PetShop -->
-            <div class="p-card">
-                <div class="p-img" style="background: linear-gradient(45deg, #00f2fe, #4facfe);"></div>
-                <div class="p-info">
-                    <h3>PetShop</h3>
-                    <p lang="tr">Modern ve dinamik bir e-ticaret web projesi.</p>
-                    <p lang="en">A modern and dynamic e-commerce web project.</p>
-                    <div class="p-tags"><span class="tag">PHP</span><span class="tag">SQL</span><span class="tag">HTML/CSS</span></div>
-                    <br><a href="https://github.com/pinarkirkpinar/petshop-web" target="_blank" class="btn btn-secondary" style="padding:5px 15px; font-size:12px;">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="section" id="contact" style="background: var(--glass);">
-        <h2 lang="tr">Bağlantı Kuralım</h2>
-        <h2 lang="en">Connect With Me</h2>
-        <div class="tech-stack" style="font-size: 40px;">
-            <a href="https://www.linkedin.com/in/pinarkirkpinar/" target="_blank" style="color:inherit;"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/pinarkirkpinar" target="_blank" style="color:inherit;"><i class="fab fa-github"></i></a>
-            <a href="mailto:pinar@email.com" style="color:inherit;"><i class="fas fa-envelope"></i></a>
-        </div>
-        <p style="margin-top:40px; color:var(--sub); font-size:12px;">© 2026 pınarkirkpinar | Built with Love</p>
-    </footer>
-
     <script>
-        function toggleTheme() {
-            const body = document.body;
-            const icon = document.querySelector('.theme-switch i');
-            if (body.getAttribute('data-theme') === 'light') {
-                body.setAttribute('data-theme', 'dark');
-                icon.className = 'fas fa-sun';
+        // Mouse'u Takip Eden Parıltı Efekti
+        const glow = document.getElementById('glow');
+        document.addEventListener('mousemove', (e) => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
+
+        // Tema Değiştirici
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                document.body.classList.add('dark-mode');
             } else {
-                body.setAttribute('data-theme', 'light');
-                icon.className = 'fas fa-moon';
+                document.body.classList.remove('dark-mode');
             }
         }
 
+        // Dil Değiştirici
         function toggleLang() {
             document.body.classList.toggle('lang-tr');
             document.body.classList.toggle('lang-en');
