@@ -17,15 +17,15 @@
 
         /* Simli Magic Cursor Efekti */
         #glow {
-            position: fixed; width: 250px; height: 250px;
-            background: radial-gradient(circle, rgba(241, 39, 226, 0.2) 0%, transparent 70%);
+            position: fixed; width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(241, 39, 226, 0.25) 0%, transparent 70%);
             border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%);
             z-index: 0; transition: 0.1s ease-out;
         }
         #sparkle {
-            position: fixed; width: 10px; height: 10px;
+            position: fixed; width: 8px; height: 8px;
             background: white; border-radius: 50%; pointer-events: none;
-            box-shadow: 0 0 10px #fff, 0 0 20px var(--primary);
+            box-shadow: 0 0 10px #fff, 0 0 15px var(--primary);
             z-index: 10001; transform: translate(-50%, -50%);
         }
 
@@ -36,17 +36,21 @@
             background: var(--glass); backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(241, 39, 226, 0.1);
         }
-        .logo { font-weight: 800; color: var(--primary); font-size: 22px; }
+        .logo { font-weight: 800; color: var(--primary); font-size: 22px; text-decoration: none; }
         .nav-center { display: flex; gap: 25px; }
         .nav-center a { text-decoration: none; color: inherit; font-size: 14px; font-weight: 500; opacity: 0.7; transition: 0.3s; }
         .nav-center a:hover { opacity: 1; color: var(--primary); }
 
-        /* Sağ Taraf - Yeni Dil ve Tema Düzeni */
+        /* Bayraklı Dil Seçici (Dropdown) */
+        .lang-dropdown { position: relative; display: inline-block; }
+        .lang-btn { background: white; border: 1px solid rgba(241,39,226,0.2); padding: 5px 10px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 14px; }
+        .lang-content { display: none; position: absolute; background: white; min-width: 120px; border-radius: 8px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); z-index: 1; margin-top: 5px; overflow: hidden; }
+        .lang-dropdown:hover .lang-content { display: block; }
+        .lang-option { padding: 10px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: 0.3s; color: #333 !important; }
+        .lang-option:hover { background: #fff5f8; color: var(--primary) !important; }
+        .flag { width: 20px; border-radius: 2px; }
+
         .nav-right { display: flex; align-items: center; gap: 20px; }
-        .lang-picker { display: flex; gap: 10px; font-size: 12px; font-weight: 700; cursor: pointer; }
-        .lang-picker span { opacity: 0.4; transition: 0.3s; }
-        .lang-picker span.active { opacity: 1; color: var(--primary); border-bottom: 2px solid var(--primary); }
-        
         .theme-dots { display: flex; gap: 8px; background: rgba(0,0,0,0.05); padding: 5px 10px; border-radius: 50px; border: 1px solid rgba(241,39,226,0.1); }
         .dot { width: 18px; height: 18px; border-radius: 50%; cursor: pointer; border: 1px solid rgba(0,0,0,0.1); }
         .dot.black { background: #0f0f1a; }
@@ -55,19 +59,26 @@
         /* Bölümler */
         section { padding: 80px 10%; position: relative; z-index: 1; }
         .hero { height: 85vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .hero h1 { font-size: 75px; font-weight: 800; color: var(--primary); line-height: 1.1; }
+        .hero h1 { font-size: 75px; font-weight: 800; color: var(--primary); line-height: 1.1; margin-bottom: 20px; }
         
-        /* Kartlar ve Timeline */
-        .timeline { display: flex; justify-content: space-between; margin-top: 40px; position: relative; }
+        /* Butonlar */
+        .btn { padding: 15px 35px; border-radius: 50px; font-weight: 700; cursor: pointer; transition: 0.3s; text-decoration: none; display: inline-block; }
+        .btn-primary { background: linear-gradient(45deg, #f127e2, #f9d423); color: white; border: none; box-shadow: 0 10px 20px rgba(241, 39, 226, 0.3); }
+        .btn-secondary { background: white; color: var(--primary); border: 1px solid var(--primary); }
+        .btn:hover { transform: scale(1.05); }
+
+        /* Timeline & Projects */
+        .section-title { font-size: 40px; color: var(--primary); margin-bottom: 40px; text-align: center; }
+        .timeline { display: flex; justify-content: space-between; margin-top: 40px; position: relative; gap: 20px; }
         .timeline::after { content: ''; position: absolute; top: 20px; width: 100%; height: 2px; background: var(--primary); opacity: 0.2; }
-        .t-item { background: var(--glass); padding: 20px; border-radius: 15px; width: 22%; border: 1px solid rgba(241,39,226,0.1); }
+        .t-item { background: var(--glass); padding: 20px; border-radius: 15px; width: 23%; border: 1px solid rgba(241,39,226,0.1); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
 
         .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
         .p-card { background: var(--glass); padding: 30px; border-radius: 20px; border: 1px solid rgba(241,39,226,0.1); transition: 0.3s; }
-        .p-card:hover { transform: translateY(-10px); border-color: var(--primary); }
+        .p-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(241, 39, 226, 0.2); }
 
         .tech-icons { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px; }
-        .tech-item { width: 60px; height: 60px; background: var(--glass); display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 24px; border: 1px solid rgba(241,39,226,0.1); }
+        .tech-item { width: 60px; height: 60px; background: var(--glass); display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 28px; border: 1px solid rgba(241,39,226,0.1); }
 
         .lang-en [lang="tr"], .lang-tr [lang="en"] { display: none; }
     </style>
@@ -78,7 +89,7 @@
     <div id="sparkle"></div>
 
     <nav>
-        <div class="logo">pincodes</div>
+        <a href="#" class="logo">pincodes</a>
         <div class="nav-center">
             <a href="#home">Home</a>
             <a href="#about">About</a>
@@ -86,10 +97,17 @@
             <a href="#contact">Contact</a>
         </div>
         <div class="nav-right">
-            <div class="lang-picker">
-                <span id="btn-tr" class="active" onclick="setLang('tr')">TR</span>
-                <span id="btn-en" onclick="setLang('en')">EN</span>
+            <!-- Bayraklı Dil Seçici -->
+            <div class="lang-dropdown">
+                <div class="lang-btn">
+                    <img src="https://flagcdn.com/w20/tr.png" class="flag" id="current-flag"> <span id="current-lang">TR</span>
+                </div>
+                <div class="lang-content">
+                    <div class="lang-option" onclick="setLang('tr')"><img src="https://flagcdn.com/w20/tr.png" class="flag"> Türkçe</div>
+                    <div class="lang-option" onclick="setLang('en')"><img src="https://flagcdn.com/w20/us.png" class="flag"> English</div>
+                </div>
             </div>
+
             <div class="theme-dots">
                 <div class="dot black" onclick="setTheme('dark')"></div>
                 <div class="dot white" onclick="setTheme('light')"></div>
@@ -103,14 +121,17 @@
     <section class="hero" id="home">
         <h1 lang="tr">Selam, Ben Pınar</h1>
         <h1 lang="en">Hi, I'm Pinar</h1>
-        <p style="font-size: 22px; margin-top: 20px; opacity: 0.8;">Computer Programming Student</p>
+        <p style="font-size: 22px; opacity: 0.8;">Computer Programming Student</p>
         <div style="margin-top: 40px; display: flex; gap: 15px;">
-            <button style="padding: 15px 35px; border-radius: 50px; border: none; background: var(--primary); color: white; font-weight: 700; cursor: pointer;">Let's Talk</button>
+            <a href="#contact" class="btn btn-primary" lang="tr">Konuşalım</a>
+            <a href="#contact" class="btn btn-primary" lang="en">Let's Talk</a>
+            <a href="#projects" class="btn btn-secondary" lang="tr">Projeleri Gör</a>
+            <a href="#projects" class="btn btn-secondary" lang="en">View Projects</a>
         </div>
     </section>
 
     <section id="about">
-        <h2 lang="tr">Yolculuğum</h2><h2 lang="en">My Journey</h2>
+        <h2 class="section-title" lang="tr">Yolculuğum</h2><h2 class="section-title" lang="en">My Journey</h2>
         <div class="timeline">
             <div class="t-item"><b>2023</b><br><span lang="tr">Lise Mezuniyeti</span><span lang="en">HS Graduation</span></div>
             <div class="t-item"><b>2024</b><br><span lang="tr">İzmir Ekonomi Üni.</span><span lang="en">IUE Start</span></div>
@@ -120,36 +141,37 @@
     </section>
 
     <section id="projects">
-        <h2 lang="tr">Projelerim</h2><h2 lang="en">My Projects</h2>
+        <h2 class="section-title" lang="tr">Öne Çıkan Projeler</h2><h2 class="section-title" lang="en">Featured Projects</h2>
         <div class="project-grid">
             <div class="p-card">
                 <h3>FlashCards</h3>
-                <p lang="tr">React Native ve Expo ile interaktif çalışma kartları.</p>
-                <p lang="en">Interactive flashcards with React Native.</p>
-                <br><a href="https://github.com/pinarkirkpinar/flashcards-app" target="_blank" style="color:var(--primary); font-weight: 700;">GitHub →</a>
+                <p lang="tr">React Native ve Expo ile interaktif çalışma kartları uygulaması.</p>
+                <p lang="en">Interactive flashcards application with React Native and Expo.</p>
+                <br><a href="https://github.com/pinarkirkpinar/flashcards-app" target="_blank" style="color:var(--primary); font-weight: 700; text-decoration: none;">GitHub →</a>
             </div>
             <div class="p-card">
                 <h3>PetShop</h3>
-                <p lang="tr">Dinamik PHP ve SQL tabanlı web projesi.</p>
-                <p lang="en">Dynamic web project with PHP & SQL.</p>
-                <br><a href="https://github.com/pinarkirkpinar/petshop-web" target="_blank" style="color:var(--primary); font-weight: 700;">GitHub →</a>
+                <p lang="tr">Dinamik PHP ve SQL tabanlı, modern bir web projesi.</p>
+                <p lang="en">Dynamic web project based on PHP and SQL.</p>
+                <br><a href="https://github.com/pinarkirkpinar/petshop-web" target="_blank" style="color:var(--primary); font-weight: 700; text-decoration: none;">GitHub →</a>
             </div>
         </div>
     </section>
 
-    <section>
-        <h2 lang="tr">Teknolojiler</h2><h2 lang="en">Technologies</h2>
+    <section id="skills">
+        <h2 class="section-title" lang="tr">Teknolojiler</h2><h2 class="section-title" lang="en">Technologies</h2>
         <div class="tech-icons">
-            <div class="tech-item"><i class="fab fa-react"></i></div>
-            <div class="tech-item"><i class="fab fa-php"></i></div>
-            <div class="tech-item"><i class="fab fa-python"></i></div>
-            <div class="tech-item"><i class="fab fa-js"></i></div>
-            <div class="tech-item"><i class="fas fa-database"></i></div>
-            <div class="tech-item">C#</div>
+            <div class="tech-item"><i class="fab fa-react" style="color: #61DAFB;"></i></div>
+            <div class="tech-item"><i class="fab fa-php" style="color: #777BB4;"></i></div>
+            <div class="tech-item"><i class="fab fa-python" style="color: #3776AB;"></i></div>
+            <div class="tech-item"><i class="fab fa-js" style="color: #F7DF1E;"></i></div>
+            <div class="tech-item"><i class="fas fa-database" style="color: #4479A1;"></i></div>
+            <div class="tech-item" style="color: #239120; font-weight: bold;">C#</div>
         </div>
     </section>
 
     <script>
+        // Mouse Takip Sistemi
         const glow = document.getElementById('glow');
         const sparkle = document.getElementById('sparkle');
         document.addEventListener('mousemove', (e) => {
@@ -159,12 +181,23 @@
             sparkle.style.top = e.clientY + 'px';
         });
 
-        function setTheme(t) { t==='dark' ? document.body.classList.add('dark-mode') : document.body.classList.remove('dark-mode'); }
+        // Tema Fonksiyonu
+        function setTheme(t) { 
+            t==='dark' ? document.body.classList.add('dark-mode') : document.body.classList.remove('dark-mode'); 
+        }
         
+        // Dil Fonksiyonu
         function setLang(l) {
             document.body.className = 'lang-' + l;
-            document.getElementById('btn-tr').className = l === 'tr' ? 'active' : '';
-            document.getElementById('btn-en').className = l === 'en' ? 'active' : '';
+            const flag = document.getElementById('current-flag');
+            const langText = document.getElementById('current-lang');
+            if(l === 'tr') {
+                flag.src = "https://flagcdn.com/w20/tr.png";
+                langText.innerText = "TR";
+            } else {
+                flag.src = "https://flagcdn.com/w20/us.png";
+                langText.innerText = "EN";
+            }
         }
     </script>
 </body>
