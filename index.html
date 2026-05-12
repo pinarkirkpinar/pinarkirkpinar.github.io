@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -8,51 +8,66 @@
     <style>
         :root {
             --primary: #f127e2; --bg-light: #fff5f8; --text-light: #333;
-            --bg-dark: #0f0f1a; --text-dark: #fff;
+            --bg-dark: #0f0f1a; --text-dark: #fff; --glass: rgba(255, 255, 255, 0.7);
         }
         
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         body { background: var(--bg-light); color: var(--text-light); transition: 0.5s; overflow-x: hidden; }
-        body.dark-mode { background: var(--bg-dark); color: var(--text-dark); }
+        body.dark-mode { background: var(--bg-dark); color: var(--text-dark); --glass: rgba(15, 15, 26, 0.8); }
 
-        /* Mouse'u Takip Eden Parıltı */
+        /* Simli Magic Cursor Efekti */
         #glow {
-            position: fixed; width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(241, 39, 226, 0.15) 0%, transparent 70%);
+            position: fixed; width: 250px; height: 250px;
+            background: radial-gradient(circle, rgba(241, 39, 226, 0.2) 0%, transparent 70%);
             border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%);
             z-index: 0; transition: 0.1s ease-out;
         }
+        #sparkle {
+            position: fixed; width: 10px; height: 10px;
+            background: white; border-radius: 50%; pointer-events: none;
+            box-shadow: 0 0 10px #fff, 0 0 20px var(--primary);
+            z-index: 10001; transform: translate(-50%, -50%);
+        }
 
-        /* Üst Menü (Nav) - Ekran Resmi 22.41.09 Tarzı */
+        /* Navigasyon */
         nav { 
             display: flex; justify-content: space-between; align-items: center; 
             padding: 15px 8%; position: sticky; top: 0; z-index: 1000;
-            background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(15px);
+            background: var(--glass); backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(241, 39, 226, 0.1);
         }
-        body.dark-mode nav { background: rgba(15, 15, 26, 0.8); }
-
-        .logo { font-weight: 800; color: var(--primary); font-size: 22px; cursor: pointer; }
-        
-        .nav-center { display: flex; gap: 30px; }
+        .logo { font-weight: 800; color: var(--primary); font-size: 22px; }
+        .nav-center { display: flex; gap: 25px; }
         .nav-center a { text-decoration: none; color: inherit; font-size: 14px; font-weight: 500; opacity: 0.7; transition: 0.3s; }
-        .nav-center a:hover, .nav-center a.active { opacity: 1; color: var(--primary); border-bottom: 2px solid var(--primary); }
+        .nav-center a:hover { opacity: 1; color: var(--primary); }
 
+        /* Sağ Taraf - Yeni Dil ve Tema Düzeni */
         .nav-right { display: flex; align-items: center; gap: 20px; }
-        .social-icons i { font-size: 18px; cursor: pointer; opacity: 0.6; transition: 0.3s; }
-        .social-icons i:hover { opacity: 1; color: var(--primary); }
-
-        /* Tema ve Dil Seçici */
-        .controls { display: flex; align-items: center; gap: 10px; background: rgba(0,0,0,0.05); padding: 5px 15px; border-radius: 50px; border: 1px solid rgba(241,39,226,0.2); }
-        .dot { width: 20px; height: 20px; border-radius: 50%; cursor: pointer; border: 2px solid white; }
+        .lang-picker { display: flex; gap: 10px; font-size: 12px; font-weight: 700; cursor: pointer; }
+        .lang-picker span { opacity: 0.4; transition: 0.3s; }
+        .lang-picker span.active { opacity: 1; color: var(--primary); border-bottom: 2px solid var(--primary); }
+        
+        .theme-dots { display: flex; gap: 8px; background: rgba(0,0,0,0.05); padding: 5px 10px; border-radius: 50px; border: 1px solid rgba(241,39,226,0.1); }
+        .dot { width: 18px; height: 18px; border-radius: 50%; cursor: pointer; border: 1px solid rgba(0,0,0,0.1); }
         .dot.black { background: #0f0f1a; }
         .dot.white { background: #ffffff; }
-        .dot.pink { background: var(--primary); }
 
-        /* Hero Kısmı */
-        .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; z-index: 1; }
-        .hero h1 { font-size: 70px; font-weight: 800; color: var(--primary); margin-bottom: 10px; }
-        .hero p { font-size: 20px; opacity: 0.7; max-width: 500px; line-height: 1.5; }
+        /* Bölümler */
+        section { padding: 80px 10%; position: relative; z-index: 1; }
+        .hero { height: 85vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .hero h1 { font-size: 75px; font-weight: 800; color: var(--primary); line-height: 1.1; }
+        
+        /* Kartlar ve Timeline */
+        .timeline { display: flex; justify-content: space-between; margin-top: 40px; position: relative; }
+        .timeline::after { content: ''; position: absolute; top: 20px; width: 100%; height: 2px; background: var(--primary); opacity: 0.2; }
+        .t-item { background: var(--glass); padding: 20px; border-radius: 15px; width: 22%; border: 1px solid rgba(241,39,226,0.1); }
+
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .p-card { background: var(--glass); padding: 30px; border-radius: 20px; border: 1px solid rgba(241,39,226,0.1); transition: 0.3s; }
+        .p-card:hover { transform: translateY(-10px); border-color: var(--primary); }
+
+        .tech-icons { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px; }
+        .tech-item { width: 60px; height: 60px; background: var(--glass); display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 24px; border: 1px solid rgba(241,39,226,0.1); }
 
         .lang-en [lang="tr"], .lang-tr [lang="en"] { display: none; }
     </style>
@@ -60,63 +75,96 @@
 <body class="lang-tr">
 
     <div id="glow"></div>
+    <div id="sparkle"></div>
 
     <nav>
         <div class="logo">pınarkırkpınar</div>
-        
         <div class="nav-center">
-            <a href="#home" class="active">Home</a>
+            <a href="#home">Home</a>
             <a href="#about">About</a>
             <a href="#projects">Projects</a>
-            <a href="#social">Social Media</a>
             <a href="#contact">Contact</a>
         </div>
-
         <div class="nav-right">
-            <div class="social-icons">
-                <a href="https://github.com/pinarkirkpinar" target="_blank" style="color:inherit;"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/pinarkirkpinar/" target="_blank" style="color:inherit; margin-left:15px;"><i class="fab fa-instagram"></i></a>
+            <div class="lang-picker">
+                <span id="btn-tr" class="active" onclick="setLang('tr')">TR</span>
+                <span id="btn-en" onclick="setLang('en')">EN</span>
             </div>
-            <div class="controls">
+            <div class="theme-dots">
                 <div class="dot black" onclick="setTheme('dark')"></div>
                 <div class="dot white" onclick="setTheme('light')"></div>
-                <div class="dot pink" onclick="toggleLang()"></div>
+            </div>
+            <div class="social-icons">
+                <a href="https://github.com/pinarkirkpinar" target="_blank" style="color:inherit;"><i class="fab fa-github"></i></a>
             </div>
         </div>
     </nav>
 
-    <div class="hero" id="home">
+    <section class="hero" id="home">
         <h1 lang="tr">Selam, Ben Pınar</h1>
         <h1 lang="en">Hi, I'm Pinar</h1>
-        <p lang="tr">Building modern web experiences.</p>
-        <p lang="en">Building modern web experiences.</p>
-        <div style="margin-top: 30px; display: flex; gap: 15px;">
-            <button style="padding: 12px 25px; border-radius: 50px; border: none; background: var(--primary); color: white; font-weight: 600; cursor: pointer;">Let's Talk</button>
-            <button style="padding: 12px 25px; border-radius: 50px; border: 1px solid var(--primary); background: transparent; color: var(--primary); font-weight: 600; cursor: pointer;">View Projects</button>
+        <p style="font-size: 22px; margin-top: 20px; opacity: 0.8;">Computer Programming Student</p>
+        <div style="margin-top: 40px; display: flex; gap: 15px;">
+            <button style="padding: 15px 35px; border-radius: 50px; border: none; background: var(--primary); color: white; font-weight: 700; cursor: pointer;">Let's Talk</button>
         </div>
-    </div>
+    </section>
+
+    <section id="about">
+        <h2 lang="tr">Yolculuğum</h2><h2 lang="en">My Journey</h2>
+        <div class="timeline">
+            <div class="t-item"><b>2023</b><br><span lang="tr">Lise Mezuniyeti</span><span lang="en">HS Graduation</span></div>
+            <div class="t-item"><b>2024</b><br><span lang="tr">İzmir Ekonomi Üni.</span><span lang="en">IUE Start</span></div>
+            <div class="t-item"><b>2025</b><br><span lang="tr">Yazılım Projeleri</span><span lang="en">Software Projects</span></div>
+            <div class="t-item"><b>2026</b><br><span lang="tr">Gelecek Hedefleri</span><span lang="en">Future Goals</span></div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 lang="tr">Projelerim</h2><h2 lang="en">My Projects</h2>
+        <div class="project-grid">
+            <div class="p-card">
+                <h3>FlashCards</h3>
+                <p lang="tr">React Native ve Expo ile interaktif çalışma kartları.</p>
+                <p lang="en">Interactive flashcards with React Native.</p>
+                <br><a href="https://github.com/pinarkirkpinar/flashcards-app" target="_blank" style="color:var(--primary); font-weight: 700;">GitHub →</a>
+            </div>
+            <div class="p-card">
+                <h3>PetShop</h3>
+                <p lang="tr">Dinamik PHP ve SQL tabanlı web projesi.</p>
+                <p lang="en">Dynamic web project with PHP & SQL.</p>
+                <br><a href="https://github.com/pinarkirkpinar/petshop-web" target="_blank" style="color:var(--primary); font-weight: 700;">GitHub →</a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2 lang="tr">Teknolojiler</h2><h2 lang="en">Technologies</h2>
+        <div class="tech-icons">
+            <div class="tech-item"><i class="fab fa-react"></i></div>
+            <div class="tech-item"><i class="fab fa-php"></i></div>
+            <div class="tech-item"><i class="fab fa-python"></i></div>
+            <div class="tech-item"><i class="fab fa-js"></i></div>
+            <div class="tech-item"><i class="fas fa-database"></i></div>
+            <div class="tech-item">C#</div>
+        </div>
+    </section>
 
     <script>
-        // Mouse'u Takip Eden Parıltı Efekti
         const glow = document.getElementById('glow');
+        const sparkle = document.getElementById('sparkle');
         document.addEventListener('mousemove', (e) => {
             glow.style.left = e.clientX + 'px';
             glow.style.top = e.clientY + 'px';
+            sparkle.style.left = e.clientX + 'px';
+            sparkle.style.top = e.clientY + 'px';
         });
 
-        // Tema Değiştirici
-        function setTheme(theme) {
-            if (theme === 'dark') {
-                document.body.classList.add('dark-mode');
-            } else {
-                document.body.classList.remove('dark-mode');
-            }
-        }
-
-        // Dil Değiştirici
-        function toggleLang() {
-            document.body.classList.toggle('lang-tr');
-            document.body.classList.toggle('lang-en');
+        function setTheme(t) { t==='dark' ? document.body.classList.add('dark-mode') : document.body.classList.remove('dark-mode'); }
+        
+        function setLang(l) {
+            document.body.className = 'lang-' + l;
+            document.getElementById('btn-tr').className = l === 'tr' ? 'active' : '';
+            document.getElementById('btn-en').className = l === 'en' ? 'active' : '';
         }
     </script>
 </body>
