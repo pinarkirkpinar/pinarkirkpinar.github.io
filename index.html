@@ -41,7 +41,7 @@
         .nav-center a { text-decoration: none; color: inherit; font-size: 14px; font-weight: 500; opacity: 0.7; transition: 0.3s; }
         .nav-center a:hover { opacity: 1; color: var(--primary); }
 
-        /* Görsel 22.53.33 Tarzı Dil Seçici */
+        /* Dil Seçici Dropdown */
         .lang-dropdown { position: relative; display: inline-block; }
         .lang-btn { 
             background: transparent; border: 1px solid rgba(241,39,226,0.2); 
@@ -73,7 +73,7 @@
         .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
         .hero h1 { font-size: 75px; font-weight: 800; color: var(--primary); margin-bottom: 20px; }
         
-        /* Iletisim Formu - Görsel 22.56.27 Tarzı */
+        /* Iletisim Formu */
         .contact-container { max-width: 600px; margin: 0 auto; background: var(--glass); padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
         .input-group { margin-bottom: 20px; text-align: left; }
         input, textarea { 
@@ -81,15 +81,23 @@
             background: rgba(255,255,255,0.5); font-size: 14px; outline: none; transition: 0.3s;
         }
         input:focus, textarea:focus { border-color: var(--primary); background: white; }
-        .btn-send { 
-            width: 100%; padding: 15px; border-radius: 50px; border: none; 
-            background: linear-gradient(45deg, #f127e2, #f9d423); color: white; 
-            font-weight: 700; cursor: pointer; transition: 0.3s;
-        }
-        .btn-send:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(241, 39, 226, 0.3); }
+        .btn-main { padding: 15px 35px; border-radius: 50px; border: none; background: linear-gradient(45deg, #f127e2, #f9d423); color: white; font-weight: 700; cursor: pointer; text-decoration: none; }
+        .btn-outline { padding: 15px 35px; border-radius: 50px; border: 1px solid var(--primary); background: transparent; color: var(--primary); font-weight: 700; cursor: pointer; text-decoration: none; }
 
-        /* Yardımcı Sınıflar */
+        /* Yeni Bölüm Tasarımları */
         .section-title { font-size: 40px; color: var(--primary); margin-bottom: 40px; text-align: center; }
+        .timeline { display: flex; justify-content: space-between; margin-top: 40px; position: relative; gap: 20px; }
+        .t-item { background: var(--glass); padding: 20px; border-radius: 15px; width: 23%; border: 1px solid rgba(241,39,226,0.1); }
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .p-card { background: var(--glass); padding: 30px; border-radius: 20px; border: 1px solid rgba(241,39,226,0.1); }
+        .tech-icons { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px; }
+        .tech-item { width: 60px; height: 60px; background: var(--glass); display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 28px; }
+
+        /* Footer & Scroll Top */
+        footer { padding: 30px 8%; display: flex; justify-content: space-between; align-items: center; font-size: 12px; opacity: 0.6; margin-top: 50px; border-top: 1px solid rgba(241, 39, 226, 0.05); }
+        .footer-socials { display: flex; gap: 15px; font-size: 16px; }
+        .scroll-top { position: fixed; right: 5%; bottom: 100px; width: 45px; height: 45px; background: var(--glass); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; color: inherit; z-index: 100; border: 1px solid rgba(241,39,226,0.1); }
+
         .lang-en [lang="tr"], .lang-tr [lang="en"] { display: none; }
     </style>
 </head>
@@ -112,7 +120,6 @@
                 <div class="dot white" onclick="setTheme('light')"></div>
             </div>
             
-            <!-- Görsel 22.53.33 Tarzı Dil Dropdown -->
             <div class="lang-dropdown">
                 <div class="lang-btn">
                     <img src="https://flagcdn.com/w40/tr.png" class="flag-icon" id="header-flag"> <i class="fas fa-chevron-down" style="font-size: 12px; opacity: 0.5;"></i>
@@ -138,100 +145,70 @@
         <h1 lang="en">Hi, I'm Pinar</h1>
         <p style="font-size: 22px; opacity: 0.8;" lang="tr">Bilgisayar Programcılığı Öğrencisi</p>
         <p style="font-size: 22px; opacity: 0.8;" lang="en">Computer Programming Student</p>
+        <div style="margin-top: 40px; display: flex; gap: 15px;">
+            <a href="#contact" class="btn-main"><span lang="tr">Konuşalım</span><span lang="en">Let's Talk</span></a>
+            <a href="#projects" class="btn-outline"><span lang="tr">Projeleri Gör</span><span lang="en">View Projects</span></a>
+        </div>
     </section>
 
-    <!-- İletişim Bölümü - Görsel 22.56.27 -->
+    <!-- EKLEDİĞİMİZ EKSİK BÖLÜMLER BURADAN BAŞLIYOR -->
+    <section id="about">
+        <h2 class="section-title" lang="tr">Yolculuğum</h2><h2 class="section-title" lang="en">My Journey</h2>
+        <div class="timeline">
+            <div class="t-item"><b>2023</b><br><span lang="tr">Lise Mezuniyeti</span><span lang="en">HS Graduation</span></div>
+            <div class="t-item"><b>2024</b><br><span lang="tr">İzmir Ekonomi Üni.</span><span lang="en">IUE Start</span></div>
+            <div class="t-item"><b>2025</b><br><span lang="tr">Yazılım Projeleri</span><span lang="en">Software Projects</span></div>
+            <div class="t-item"><b>2026</b><br><span lang="tr">Gelecek Hedefleri</span><span lang="en">Future Goals</span></div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title" lang="tr">Projelerim</h2><h2 class="section-title" lang="en">My Projects</h2>
+        <div class="project-grid">
+            <div class="p-card">
+                <h3>FlashCards</h3>
+                <p lang="tr">React Native ve Expo ile interaktif çalışma kartları.</p>
+                <p lang="en">Interactive flashcards with React Native.</p>
+                <br><a href="https://github.com/pinarkirkpinar/flashcards-app" target="_blank" style="color:var(--primary); font-weight: 700; text-decoration: none;">GitHub →</a>
+            </div>
+            <div class="p-card">
+                <h3>PetShop</h3>
+                <p lang="tr">Dinamik PHP ve SQL tabanlı web projesi.</p>
+                <p lang="en">Dynamic web project with PHP & SQL.</p>
+                <br><a href="https://github.com/pinarkirkpinar/petshop-web" target="_blank" style="color:var(--primary); font-weight: 700; text-decoration: none;">GitHub →</a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title" lang="tr">Teknolojiler</h2><h2 class="section-title" lang="en">Technologies</h2>
+        <div class="tech-icons">
+            <div class="tech-item"><i class="fab fa-react" style="color: #61DAFB;"></i></div>
+            <div class="tech-item"><i class="fab fa-php" style="color: #777BB4;"></i></div>
+            <div class="tech-item"><i class="fab fa-python" style="color: #3776AB;"></i></div>
+            <div class="tech-item"><i class="fab fa-js" style="color: #F7DF1E;"></i></div>
+            <div class="tech-item"><i class="fas fa-database" style="color: #4479A1;"></i></div>
+            <div class="tech-item" style="color: #239120; font-weight: bold;">C#</div>
+        </div>
+    </section>
+    <!-- EKLENEN BÖLÜMLER BURADA BİTTİ -->
+
     <section id="contact" style="text-align: center;">
-        <h2 class="section-title" lang="tr">İletişime Geç</h2>
-        <h2 class="section-title" lang="en">Get in Touch</h2>
+        <h2 class="section-title" lang="tr">İletişime Geç</h2><h2 class="section-title" lang="en">Get in Touch</h2>
         <p style="margin-bottom: 40px; opacity: 0.7; max-width: 500px; margin-left: auto; margin-right: auto;">
             <span lang="tr">Aklınızda bir projeniz mi var veya işbirliği yapmak mı istiyorsunuz? Sizden haber almak isterim!</span>
             <span lang="en">Have a project in mind or want to collaborate? I'd love to hear from you!</span>
         </p>
 
         <div class="contact-container">
-            <div class="input-group">
-                <input type="text" id="inp-name" placeholder="Adınız">
-            </div>
-            <div class="input-group">
-                <input type="email" id="inp-mail" placeholder="ornek@email.com">
-            </div>
-            <div class="input-group">
-                <textarea id="inp-msg" rows="5" placeholder="Projeniz hakkında bilgi verin..."></textarea>
-            </div>
-            <button class="btn-send">
-                <span lang="tr">Mesaj Gönder</span>
-                <span lang="en">Send Message</span>
-            </button>
+            <div class="input-group"><input type="text" id="inp-name" placeholder="Adınız"></div>
+            <div class="input-group"><input type="email" id="inp-mail" placeholder="ornek@email.com"></div>
+            <div class="input-group"><textarea id="inp-msg" rows="5" placeholder="Projeniz hakkında bilgi verin..."></textarea></div>
+            <button class="btn-main" style="width: 100%;"><span lang="tr">Mesaj Gönder</span><span lang="en">Send Message</span></button>
         </div>
     </section>
 
-    <script>
-        // Mouse Takip
-        const glow = document.getElementById('glow');
-        const sparkle = document.getElementById('sparkle');
-        document.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px'; glow.style.top = e.clientY + 'px';
-            sparkle.style.left = e.clientX + 'px'; sparkle.style.top = e.clientY + 'px';
-        });
-
-        function setTheme(t) { t==='dark' ? document.body.classList.add('dark-mode') : document.body.classList.remove('dark-mode'); }
-
-        // Dil Değiştirme ve Placeholder Güncelleme
-        function setLang(l) {
-            document.body.className = 'lang-' + l;
-            const headerFlag = document.getElementById('header-flag');
-            
-            // UI Güncelleme
-            if(l === 'tr') {
-                headerFlag.src = "https://flagcdn.com/w40/tr.png";
-                document.getElementById('opt-tr').classList.add('active');
-                document.getElementById('opt-en').classList.remove('active');
-                // Placeholderlar
-                document.getElementById('inp-name').placeholder = "Adınız";
-                document.getElementById('inp-msg').placeholder = "Projeniz hakkında bilgi verin...";
-            } else {
-                headerFlag.src = "https://flagcdn.com/w40/us.png";
-                document.getElementById('opt-en').classList.add('active');
-                document.getElementById('opt-tr').classList.remove('active');
-                // Placeholderlar
-                document.getElementById('inp-name').placeholder = "Your Name";
-                document.getElementById('inp-msg').placeholder = "Tell me about your project...";
-            }
-        }
-    </script>
-    <!-- BURADAN İTİBAREN EKLEME YAPILDI -->
-    <style>
-        footer {
-            padding: 30px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 12px;
-            opacity: 0.6;
-            margin-top: 50px;
-            border-top: 1px solid rgba(241, 39, 226, 0.05);
-        }
-        .footer-left span b { color: var(--primary); }
-        .footer-right { display: flex; align-items: center; gap: 20px; }
-        .footer-socials { display: flex; gap: 15px; font-size: 16px; }
-        .footer-socials a { color: inherit; text-decoration: none; transition: 0.3s; }
-        .footer-socials a:hover { color: var(--primary); }
-
-        .scroll-top {
-            position: fixed; right: 5%; bottom: 100px;
-            width: 45px; height: 45px; background: var(--glass);
-            border-radius: 50%; display: flex; align-items: center;
-            justify-content: center; text-decoration: none; color: inherit;
-            border: 1px solid rgba(241,39,226,0.1); transition: 0.3s;
-            z-index: 100;
-        }
-        .scroll-top:hover { transform: translateY(-5px); border-color: var(--primary); }
-    </style>
-
-    <a href="#home" class="scroll-top">
-        <i class="fas fa-arrow-up"></i>
-    </a>
+    <a href="#home" class="scroll-top"><i class="fas fa-arrow-up"></i></a>
 
     <footer>
         <div class="footer-left">
@@ -248,6 +225,34 @@
             <span>v1.0.1</span>
         </div>
     </footer>
-    <!-- EKLEME BURADA BİTTİ -->
+
+    <script>
+        const glow = document.getElementById('glow');
+        const sparkle = document.getElementById('sparkle');
+        document.addEventListener('mousemove', (e) => {
+            glow.style.left = e.clientX + 'px'; glow.style.top = e.clientY + 'px';
+            sparkle.style.left = e.clientX + 'px'; sparkle.style.top = e.clientY + 'px';
+        });
+
+        function setTheme(t) { t==='dark' ? document.body.classList.add('dark-mode') : document.body.classList.remove('dark-mode'); }
+
+        function setLang(l) {
+            document.body.className = 'lang-' + l;
+            const headerFlag = document.getElementById('header-flag');
+            if(l === 'tr') {
+                headerFlag.src = "https://flagcdn.com/w40/tr.png";
+                document.getElementById('opt-tr').classList.add('active');
+                document.getElementById('opt-en').classList.remove('active');
+                document.getElementById('inp-name').placeholder = "Adınız";
+                document.getElementById('inp-msg').placeholder = "Projeniz hakkında bilgi verin...";
+            } else {
+                headerFlag.src = "https://flagcdn.com/w40/us.png";
+                document.getElementById('opt-en').classList.add('active');
+                document.getElementById('opt-tr').classList.remove('active');
+                document.getElementById('inp-name').placeholder = "Your Name";
+                document.getElementById('inp-msg').placeholder = "Tell me about your project...";
+            }
+        }
+    </script>
 </body>
 </html>
