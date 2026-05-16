@@ -90,8 +90,9 @@
             background: rgba(255,255,255,0.5); font-size: 14px; outline: none; transition: 0.3s;
         }
         input:focus, textarea:focus { border-color: var(--primary); background: white; }
-        .btn-main { padding: 15px 35px; border-radius: 50px; border: none; background: linear-gradient(45deg, #f127e2, #f9d423); color: white; font-weight: 700; cursor: pointer; text-decoration: none; }
-        .btn-outline { padding: 15px 35px; border-radius: 50px; border: 1px solid var(--primary); background: transparent; color: var(--primary); font-weight: 700; cursor: pointer; text-decoration: none; }
+        .btn-main { padding: 15px 35px; border-radius: 50px; border: none; background: linear-gradient(45deg, #f127e2, #f9d423); color: white; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
+        .btn-outline { padding: 15px 35px; border-radius: 50px; border: 1px solid var(--primary); background: transparent; color: var(--primary); font-weight: 700; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .btn-outline:hover { background: rgba(241, 39, 226, 0.1); }
 
         /* Projeler & Beceriler */
         .section-title { font-size: 40px; color: var(--primary); margin-bottom: 40px; text-align: center; }
@@ -125,19 +126,16 @@
             <a href="#contact"><span lang="tr">İletişim</span><span lang="en">Contact</span></a>
         </div>
         <div class="nav-right">
-            <!-- Sosyal İkonlar (Görsel 23.27.56 Tarzı Solda) -->
             <div class="social-nav-icons">
                 <a href="https://github.com/pinarkirkpinar" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/pinarkirkpinar/" target="_blank"><i class="fab fa-linkedin"></i></a>
             </div>
 
-            <!-- Tema Dots -->
             <div class="theme-dots">
                 <div class="dot black" onclick="setTheme('dark')"></div>
                 <div class="dot white" onclick="setTheme('light')"></div>
             </div>
             
-            <!-- Dil Dropdown -->
             <div class="lang-dropdown">
                 <div class="lang-btn">
                     <img src="https://flagcdn.com/w40/tr.png" class="flag-icon" id="header-flag"> <i class="fas fa-chevron-down" style="font-size: 12px; opacity: 0.5;"></i>
@@ -159,9 +157,11 @@
         <h1 lang="en">Hi, I'm Pinar</h1>
         <p style="font-size: 22px; opacity: 0.8;" lang="tr">Bilgisayar Programcılığı Öğrencisi</p>
         <p style="font-size: 22px; opacity: 0.8;" lang="en">Computer Programming Student</p>
-        <div style="margin-top: 40px; display: flex; gap: 15px;">
+        <div style="margin-top: 40px; display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
             <a href="#contact" class="btn-main"><span lang="tr">Konuşalım</span><span lang="en">Let's Talk</span></a>
             <a href="#projects" class="btn-outline"><span lang="tr">Projeleri Gör</span><span lang="en">View Projects</span></a>
+            <a href="Pinar_Kirkpinar_CV_TR.pdf" target="_blank" class="btn-outline"><i class="fas fa-file-pdf" style="margin-right: 8px;"></i><span lang="tr">CV İndir</span><span lang="en">Download CV (TR)</span></a>
+            <a href="Pinar_Kirkpinar_CV_EN.pdf" target="_blank" class="btn-outline"><i class="fas fa-file-pdf" style="margin-right: 8px;"></i><span lang="tr">CV İndir (EN)</span><span lang="en">Download CV</span></a>
         </div>
     </section>
 
@@ -179,41 +179,63 @@
         <h2 class="section-title" lang="tr">Öne Çıkan Projeler</h2>
         <h2 class="section-title" lang="en">Featured Projects</h2>
         <div class="project-grid">
-            <!-- FlashCards -->
             <div class="p-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
                 <div style="height: 250px; background: linear-gradient(135deg, #2c1a4d 0%, #0f0f1a 100%); position: relative; display: flex; align-items: center; justify-content: center;">
                     <span style="position: absolute; top: 15px; left: 15px; background: var(--primary); color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold;">Featured</span>
                     <i class="fas fa-layer-group" style="font-size: 60px; color: var(--primary); opacity: 0.8;"></i>
                 </div>
-                <div style="padding: 25px; background: white; color: #333;">
-                    <h3>FlashCards</h3>
-                    <p lang="tr">React Native ve Expo ile geliştirilmiş interaktif çalışma kartları.</p>
-                    <p lang="en">Interactive flashcards built with React Native and Expo.</p>
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0;">
-                        <span style="background: #f0f0f0; padding: 5px 10px; border-radius: 8px; font-size: 12px;">React Native</span>
-                        <span style="background: #f0f0f0; padding: 5px 10px; border-radius: 8px; font-size: 12px;">JavaScript</span>
+                <div style="padding: 25px; background: white; color: #333; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h3>FlashCards</h3>
+                        <p lang="tr">React Native ve Expo ile geliştirilmiş interaktif çalışma kartları.</p>
+                        <p lang="en">Interactive flashcards built with React Native and Expo.</p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0;">
+                            <span style="background: #f0f0f0; padding: 5px 10px; border-radius: 8px; font-size: 12px;">React Native</span>
+                            <span style="background: #f0f0f0; padding: 5px 10px; border-radius: 8px; font-size: 12px;">JavaScript</span>
+                        </div>
                     </div>
-                    <div style="display: flex; gap: 10px;">
+                    <div style="display: flex; gap: 10px; margin-top: auto;">
                         <a href="https://github.com/pinarkirkpinar/flashcards-app" target="_blank" style="flex: 1; text-align: center; padding: 10px; border: 1px solid #ddd; border-radius: 10px; text-decoration: none; color: #333; font-weight: bold;">GitHub</a>
                         <a href="#" style="flex: 1; text-align: center; padding: 10px; background: linear-gradient(45deg, var(--primary), #f9d423); border-radius: 10px; text-decoration: none; color: white; font-weight: bold;">Demo</a>
                     </div>
                 </div>
             </div>
-            <!-- PetShop -->
             <div class="p-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
                 <div style="height: 250px; background: linear-gradient(135deg, #1a2a4d 0%, #0f0f1a 100%); position: relative; display: flex; align-items: center; justify-content: center;">
                     <i class="fas fa-paw" style="font-size: 60px; color: #4facfe; opacity: 0.8;"></i>
                 </div>
-                <div style="padding: 25px; background: white; color: #333;">
-                    <h3>PetShop</h3>
-                    <p lang="tr">Dinamik PHP ve SQL tabanlı web projesi.</p>
-                    <p lang="en">Dynamic PHP and SQL based web project.</p>
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0;">
-                        <span style="background: #f0f0f0; padding: 5px 10px; border-radius: 8px; font-size: 12px;">PHP</span>
-                        <span style="background: #f0f0f0; padding: 5px 10px; border-radius: 8px; font-size: 12px;">MySQL</span>
+                <div style="padding: 25px; background: white; color: #333; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h3>PetShop</h3>
+                        <p lang="tr">Dinamik PHP ve SQL tabanlı web projesi.</p>
+                        <p lang="en">Dynamic PHP and SQL based web project.</p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0;">
+                            <span style="background: #f0f0f0; padding: 5px 10px; border-radius: 8px; font-size: 12px;">PHP</span>
+                            <span style="background: #f0f0f0; padding: 5px 10px; border-radius: 8px; font-size: 12px;">MySQL</span>
+                        </div>
                     </div>
-                    <div style="display: flex; gap: 10px;">
+                    <div style="display: flex; gap: 10px; margin-top: auto;">
                         <a href="https://github.com/pinarkirkpinar/petshop-web" target="_blank" style="flex: 1; text-align: center; padding: 10px; border: 1px solid #ddd; border-radius: 10px; text-decoration: none; color: #333; font-weight: bold;">GitHub</a>
+                        <a href="#" style="flex: 1; text-align: center; padding: 10px; background: linear-gradient(45deg, var(--primary), #f9d423); border-radius: 10px; text-decoration: none; color: white; font-weight: bold;">Demo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="p-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                <div style="height: 250px; background: linear-gradient(135deg, #3d1a40 0%, #0f0f1a 100%); position: relative; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-cloud-sun" style="font-size: 60px; color: #f9d423; opacity: 0.8;"></i>
+                </div>
+                <div style="padding: 25px; background: white; color: #333; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h3>Bored API</h3>
+                        <p lang="tr">Asenkron JavaScript mimarisi ile dinamik veri entegrasyonu projesi.</p>
+                        <p lang="en">Dynamic data integration project with asynchronous JavaScript architecture.</p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0;">
+                            <span style="background: #f0f0f0; padding: 5px 10px; border-radius: 8px; font-size: 12px;">JavaScript</span>
+                            <span style="background: #f0f0f0; padding: 5px 10px; border-radius: 8px; font-size: 12px;">Fetch API</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-top: auto;">
+                        <a href="https://github.com/pinarkirkpinar/bored-api" target="_blank" style="flex: 1; text-align: center; padding: 10px; border: 1px solid #ddd; border-radius: 10px; text-decoration: none; color: #333; font-weight: bold;">GitHub</a>
                         <a href="#" style="flex: 1; text-align: center; padding: 10px; background: linear-gradient(45deg, var(--primary), #f9d423); border-radius: 10px; text-decoration: none; color: white; font-weight: bold;">Demo</a>
                     </div>
                 </div>
