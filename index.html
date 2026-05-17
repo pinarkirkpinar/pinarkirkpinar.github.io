@@ -107,8 +107,32 @@
         .section-title { font-size: 40px; color: var(--primary); margin-bottom: 40px; text-align: center; }
         .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
         .p-card { background: var(--glass); border-radius: 20px; border: 1px solid rgba(241,39,226,0.1); transition: 0.3s; }
+        .tech-icons { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px; }
+        .tech-item { width: 60px; height: 60px; background: var(--glass); display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 28px; }
 
         /* === HAKKIMDA BÖLÜMÜ === */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        .about-text-card {
+            background: var(--glass);
+            border: 1px solid rgba(241,39,226,0.12);
+            border-radius: 24px;
+            padding: 36px;
+        }
+        .about-text-card p {
+            font-size: 16px;
+            line-height: 1.8;
+            opacity: 0.85;
+        }
+        .about-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
         .detail-row {
             display: flex;
             align-items: flex-start;
@@ -129,6 +153,13 @@
             font-size: 18px;
             color: var(--primary);
             flex-shrink: 0;
+        }
+        .detail-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.5;
+            margin-bottom: 4px;
         }
         .detail-value {
             font-size: 14px;
@@ -158,6 +189,12 @@
             color: var(--primary);
             margin-bottom: 10px;
             opacity: 0.8;
+        }
+        .stat-number {
+            font-size: 38px;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
         }
         .stat-label {
             font-size: 12px;
@@ -214,14 +251,87 @@
         .tech-chip:hover { border-color: var(--primary); }
         .tech-chip img { width: 26px; height: 26px; object-fit: contain; }
 
+        /* soft skills tags below strip */
+        .soft-skills-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .skill-tag {
+            background: rgba(241,39,226,0.08);
+            border: 1px solid rgba(241,39,226,0.15);
+            color: inherit;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
         footer { padding: 30px 8%; display: flex; justify-content: space-between; align-items: center; font-size: 12px; opacity: 0.6; margin-top: 50px; border-top: 1px solid rgba(241, 39, 226, 0.05); }
+        .footer-socials { display: flex; gap: 15px; font-size: 16px; }
         .scroll-top { position: fixed; right: 5%; bottom: 100px; width: 45px; height: 45px; background: var(--glass); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; color: inherit; z-index: 100; border: 1px solid rgba(241,39,226,0.1); transition: 0.3s; }
         .scroll-top:hover { transform: translateY(-5px); border-color: var(--primary); }
 
         .lang-en [lang="tr"], .lang-tr [lang="en"] { display: none; }
 
+        /* Hamburger butonu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1100;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        .mobile-menu-extras {
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            padding-top: 10px;
+            border-top: 1px solid rgba(241,39,226,0.15);
+            width: 100%;
+        }
         @media (max-width: 768px) {
+            .mobile-menu-extras { display: flex; }
+            .about-grid { grid-template-columns: 1fr; }
             .hero h1 { font-size: 48px; }
+
+            .hamburger { display: flex; }
+
+            .nav-center {
+                display: none;
+                position: fixed;
+                top: 0; left: 0;
+                width: 100%; height: 100vh;
+                background: var(--glass);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 36px;
+                z-index: 1050;
+            }
+            .nav-center.open { display: flex; }
+            .nav-center a { font-size: 22px; opacity: 0.9; }
+
+            .social-nav-icons { display: none; }
+            .theme-dots { display: none; }
+            .lang-dropdown { display: none; }
         }
     </style>
 </head>
@@ -232,12 +342,43 @@
 
     <nav>
         <a href="#" class="logo">pincodes</a>
-        <div class="nav-center">
-            <a href="#home"><span lang="tr">Ana Sayfa</span><span lang="en">Home</span></a>
-            <a href="#about"><span lang="tr">Hakkımda</span><span lang="en">About</span></a>
-            <a href="#projects"><span lang="tr">Projeler</span><span lang="en">Projects</span></a>
-            <a href="#skills"><span lang="tr">Beceriler</span><span lang="en">Skills</span></a>
-            <a href="#contact"><span lang="tr">İletişim</span><span lang="en">Contact</span></a>
+
+        <!-- Hamburger butonu (mobilde görünür) -->
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+
+        <div class="nav-center" id="navCenter">
+            <a href="#home" onclick="closeMenu()"><span lang="tr">Ana Sayfa</span><span lang="en">Home</span></a>
+            <a href="#about" onclick="closeMenu()"><span lang="tr">Hakkımda</span><span lang="en">About</span></a>
+            <a href="#projects" onclick="closeMenu()"><span lang="tr">Projeler</span><span lang="en">Projects</span></a>
+            <a href="#skills" onclick="closeMenu()"><span lang="tr">Beceriler</span><span lang="en">Skills</span></a>
+            <a href="#contact" onclick="closeMenu()"><span lang="tr">İletişim</span><span lang="en">Contact</span></a>
+
+            <!-- Mobilde görünen ekstra kontroller -->
+            <div class="mobile-menu-extras">
+                <!-- Sosyal ikonlar -->
+                <div style="display:flex; gap:20px; justify-content:center;">
+                    <a href="https://github.com/pinarkirkpinar" target="_blank" style="color:inherit; font-size:26px;"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/pinarkirkpinar/" target="_blank" style="color:inherit; font-size:26px;"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <!-- Tema seçimi -->
+                <div style="display:flex; gap:10px; justify-content:center; align-items:center;">
+                    <span style="font-size:12px; opacity:0.5; font-weight:500;" lang="tr">Tema</span>
+                    <span style="font-size:12px; opacity:0.5; font-weight:500;" lang="en">Theme</span>
+                    <div class="dot black" onclick="setTheme('dark')" style="width:22px;height:22px;"></div>
+                    <div class="dot white" onclick="setTheme('light')" style="width:22px;height:22px;border:1px solid #ddd;"></div>
+                </div>
+                <!-- Dil seçimi -->
+                <div style="display:flex; gap:12px; justify-content:center;">
+                    <div onclick="setLang('tr'); closeMenu();" style="display:flex;align-items:center;gap:8px;cursor:pointer;padding:10px 18px;border-radius:12px;border:1px solid rgba(241,39,226,0.2);font-weight:600;font-size:14px;">
+                        <img src="https://flagcdn.com/w40/tr.png" style="width:22px;border-radius:3px;"> Türkçe
+                    </div>
+                    <div onclick="setLang('en'); closeMenu();" style="display:flex;align-items:center;gap:8px;cursor:pointer;padding:10px 18px;border-radius:12px;border:1px solid rgba(241,39,226,0.2);font-weight:600;font-size:14px;">
+                        <img src="https://flagcdn.com/w40/us.png" style="width:22px;border-radius:3px;"> English
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="nav-right">
             <div class="social-nav-icons">
@@ -266,6 +407,7 @@
         </div>
     </nav>
 
+    <!-- HERO -->
     <section class="hero" id="home">
         <h1 lang="tr">Selam, Ben Pınar</h1>
         <h1 lang="en">Hi, I'm Pinar</h1>
@@ -278,7 +420,7 @@
             A developer candidate focused on web technologies, mobile application development and database systems.
         </p>
         <div style="margin-top: 36px; display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
-            <a href="#contact" class="btn-main"><span lang="tr">Konuşalım</span><span lang="en">Let's Talk</span></a>
+            <a href="#contact" class="btn-main"><span lang="tr">İletişim</span><span lang="en">Contact</span></a>
             <a href="#projects" class="btn-outline"><span lang="tr">Projeleri Gör</span><span lang="en">View Projects</span></a>
             <a href="Pinar_Kirkpinar_CV_TR.pdf" target="_blank" class="btn-outline"><i class="fas fa-file-pdf" style="margin-right: 8px;"></i><span lang="tr">CV İndir</span><span lang="en">Download CV (TR)</span></a>
             <a href="Pinar_Kirkpinar_CV_EN.pdf" target="_blank" class="btn-outline"><i class="fas fa-file-pdf" style="margin-right: 8px;"></i><span lang="tr">CV İndir (EN)</span><span lang="en">Download CV</span></a>
@@ -286,52 +428,54 @@
         <div class="stats-row">
             <div class="stat-box">
                 <div class="stat-icon"><i class="fas fa-code"></i></div>
-                <div style="font-size: 38px; font-weight: 800; color: var(--primary); line-height: 1;">3+</div>
+                <div class="stat-number">3+</div>
                 <div class="stat-label"><span lang="tr">Tamamlanan Proje</span><span lang="en">Completed Projects</span></div>
             </div>
             <div class="stat-box">
                 <div class="stat-icon"><i class="fas fa-layer-group"></i></div>
-                <div style="font-size: 38px; font-weight: 800; color: var(--primary); line-height: 1;">10+</div>
+                <div class="stat-number">10+</div>
                 <div class="stat-label"><span lang="tr">Teknoloji & Araç</span><span lang="en">Technologies & Tools</span></div>
             </div>
         </div>
     </section>
 
+    <!-- HAKKIMDA -->
     <section id="about">
         <h2 class="section-title" lang="tr">Hakkımda</h2>
         <h2 class="section-title" lang="en">About Me</h2>
 
         <p style="text-align:center; max-width:580px; margin: -20px auto 40px; font-size:15px; line-height:1.8; opacity:0.7;" lang="tr">
-            Bilgisayar Programcılığı alanında eğitim almaktayım. Web teknolojileri, mobil uygulama geliştirme ve veri tabanı sistemleri üzerine yoğunlaşıyorum. Akademik bilgimi, güncel yazılım trendleriyle birleştirerek sektör standartlarına uygun ve estetik projeler üretmeye odaklanan bir geliştirici adayıyım.
+            İzmir Ekonomi Üniversitesi Bilgisayar Programcılığı bölümü öğrencisiyim. Web teknolojileri, mobil uygulama geliştirme ve veri tabanı sistemleri üzerine yoğunlaşıyor; öğrendiğim bilgileri gerçek projelere dönüştürmeye çalışıyorum.
         </p>
         <p style="text-align:center; max-width:580px; margin: -20px auto 40px; font-size:15px; line-height:1.8; opacity:0.7;" lang="en">
-            I am currently studying Computer Programming. I specialize in web technologies, mobile application development, and database systems. By merging my academic background with current software trends, I am an aspiring developer focused on creating aesthetic, industry-standard projects.
+            I'm a Computer Programming student at İzmir University of Economics, focused on web technologies, mobile development and database systems — turning what I learn into real projects.
         </p>
         <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; max-width: 800px; margin: 0 auto;">
             <div class="detail-row" style="flex: 1; min-width: 240px;">
                 <div class="detail-icon"><i class="fas fa-graduation-cap"></i></div>
                 <div>
-                    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.5; margin-bottom: 4px;"><span lang="tr">Eğitim</span><span lang="en">Education</span></div>
+                    <div class="detail-label"><span lang="tr">Eğitim</span><span lang="en">Education</span></div>
                     <div class="detail-value"><span lang="tr">Bilgisayar Programcılığı<br>İzmir Ekonomi Üni.</span><span lang="en">Computer Programming<br>İzmir University of Economics</span></div>
                 </div>
             </div>
             <div class="detail-row" style="flex: 1; min-width: 240px;">
                 <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
                 <div>
-                    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.5; margin-bottom: 4px;"><span lang="tr">Konum</span><span lang="en">Location</span></div>
+                    <div class="detail-label"><span lang="tr">Konum</span><span lang="en">Location</span></div>
                     <div class="detail-value">İzmir, Türkiye</div>
                 </div>
             </div>
             <div class="detail-row" style="flex: 1; min-width: 240px;">
                 <div class="detail-icon"><i class="fas fa-lightbulb"></i></div>
                 <div>
-                    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.5; margin-bottom: 4px;"><span lang="tr">İlgi Alanları</span><span lang="en">Interests</span></div>
+                    <div class="detail-label"><span lang="tr">İlgi Alanları</span><span lang="en">Interests</span></div>
                     <div class="detail-value"><span lang="tr">Full-Stack Geliştirme · Açık Kaynak · UI/UX Tasarımı</span><span lang="en">Full-Stack Development · Open Source · UI/UX Design</span></div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- PROJEler -->
     <section id="projects">
         <h2 class="section-title" lang="tr">Öne Çıkan Projeler</h2>
         <h2 class="section-title" lang="en">Featured Projects</h2>
@@ -397,6 +541,7 @@
         </div>
     </section>
 
+    <!-- BECERİLER -->
     <section id="skills">
         <h2 class="section-title" lang="tr">Teknolojiler</h2>
         <h2 class="section-title" lang="en">Technologies</h2>
@@ -405,8 +550,22 @@
             <span lang="en">Tools and technologies I use to bring ideas to life</span>
         </p>
 
+        <!-- Scrolling strip -->
         <div class="tech-strip-wrapper">
             <div class="tech-strip" id="techStrip">
+                <!-- set 1 -->
+                <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JS"> JavaScript</div>
+                <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP"> PHP</div>
+                <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python"> Python</div>
+                <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL"> MySQL</div>
+                <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React Native"> React Native</div>
+                <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git"> Git</div>
+                <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="GitHub" style="filter: var(--github-filter)"> GitHub</div>
+                <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VSCode"> VS Code</div>
+                <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5"> HTML5</div>
+                <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3"> CSS3</div>
+                <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/expo/expo-original.svg" alt="Expo" style="filter: var(--expo-filter)"> Expo</div>
+                <!-- set 2 duplicate for seamless loop -->
                 <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JS"> JavaScript</div>
                 <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP"> PHP</div>
                 <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python"> Python</div>
@@ -422,9 +581,11 @@
         </div>
     </section>
 
+    <!-- İLETİŞİM -->
     <section id="contact" style="text-align: center;">
         <h2 class="section-title" lang="tr">İletişime Geç</h2><h2 class="section-title" lang="en">Get in Touch</h2>
 
+        <!-- İletişim linkleri -->
         <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-bottom: 40px;">
             <a href="mailto:pinarkrkpnr24@gmail.com" style="display:flex; align-items:center; gap:10px; padding: 14px 24px; background: var(--glass); border: 1px solid rgba(241,39,226,0.15); border-radius: 14px; text-decoration: none; color: inherit; font-weight: 600; font-size: 14px; transition: 0.3s;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='rgba(241,39,226,0.15)'">
                 <i class="fas fa-envelope" style="color: var(--primary); font-size: 18px;"></i>
@@ -441,13 +602,13 @@
         </div>
 
         <div class="contact-container">
-            <form id="contact-form">
-                <div class="input-group"><input type="text" name="name" id="inp-name" placeholder="Adınız" required></div>
-                <div class="input-group"><input type="email" name="email" id="inp-mail" placeholder="ornek@email.com" required></div>
-                <div class="input-group"><textarea name="message" id="inp-msg" rows="5" placeholder="Mesajınız..." required></textarea></div>
-                <button type="submit" class="btn-main" style="width: 100%;"><span lang="tr">Mesaj Gönder</span><span lang="en">Send Message</span></button>
-                <p id="form-status" style="margin-top: 14px; font-weight: 600; font-size: 14px;"></p>
-            </form>
+        <form id="contact-form">
+            <div class="input-group"><input type="text" name="name" id="inp-name" placeholder="Adınız" required></div>
+            <div class="input-group"><input type="email" name="email" id="inp-mail" placeholder="ornek@email.com" required></div>
+            <div class="input-group"><textarea name="message" id="inp-msg" rows="5" placeholder="Mesajınız..." required></textarea></div>
+            <button type="submit" class="btn-main" style="width: 100%;"><span lang="tr">Mesaj Gönder</span><span lang="en">Send Message</span></button>
+            <p id="form-status" style="margin-top: 14px; font-weight: 600; font-size: 14px;"></p>
+        </form>
         </div>
     </section>
 
@@ -492,7 +653,7 @@
         const colors = ['#f127e2', '#ff79c6', '#f9d423', '#fff', '#d946ef'];
         document.addEventListener('mousemove', (e) => {
             const now = Date.now();
-            if (now - lastTrail < 30) return;
+            if (now - lastTrail < 30) return; // her 30ms'de bir nokta
             lastTrail = now;
 
             const dot = document.createElement('div');
@@ -507,13 +668,7 @@
             setTimeout(() => dot.remove(), 600);
         });
 
-        // Kayan Şerit (Tech Strip) Logolarını JS ile Otomatik Klonlama Operasyonu
-        const strip = document.getElementById('techStrip');
-        if (strip) {
-            strip.innerHTML += strip.innerHTML;
-        }
-
-        // Formspree API Entegrasyonu
+        // Formspree
         const form = document.getElementById('contact-form');
         const formStatus = document.getElementById('form-status');
         form.addEventListener('submit', async (e) => {
@@ -534,7 +689,7 @@
                     formStatus.style.color = 'var(--primary)';
                     form.reset();
                 } else {
-                    const errMsg = json.errors ? json.errors.map(err => err.message).join(', ') : 'Bilinmeyen hata';
+                    const errMsg = json.errors ? json.errors.map(e => e.message).join(', ') : 'Bilinmeyen hata';
                     formStatus.textContent = '❌ Hata: ' + errMsg;
                     formStatus.style.color = 'red';
                 }
@@ -552,6 +707,15 @@
                 }, 800);
             }, 5000);
         });
+
+        function toggleMenu() {
+            document.getElementById('hamburger').classList.toggle('open');
+            document.getElementById('navCenter').classList.toggle('open');
+        }
+        function closeMenu() {
+            document.getElementById('hamburger').classList.remove('open');
+            document.getElementById('navCenter').classList.remove('open');
+        }
 
         function setTheme(t) { t==='dark' ? document.body.classList.add('dark-mode') : document.body.classList.remove('dark-mode'); }
 
@@ -574,4 +738,4 @@
         }
     </script>
 </body>
-</html>            
+</html>
