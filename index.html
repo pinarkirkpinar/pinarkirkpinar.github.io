@@ -77,7 +77,7 @@
         }
         .lang-option:hover { background: #fff5f8; }
         .lang-option.active { color: var(--primary); }
-        .flag-icon { width: 25px; }
+        .flag-text { font-size: 20px; }
 
         .nav-right { display: flex; align-items: center; gap: 15px; }
         .social-nav-icons { display: flex; gap: 15px; align-items: center; }
@@ -110,7 +110,6 @@
         .tech-icons { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px; }
         .tech-item { width: 60px; height: 60px; background: var(--glass); display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 28px; }
 
-        /* === HAKKIMDA BÖLÜMÜ === */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -166,7 +165,6 @@
             font-weight: 600;
         }
 
-        /* === STATS === */
         .stats-row {
             display: flex;
             justify-content: center;
@@ -203,7 +201,6 @@
             font-weight: 500;
         }
 
-        /* === BECERİLER — Scrolling Tech Strip === */
         .tech-strip-wrapper {
             overflow: hidden;
             position: relative;
@@ -251,7 +248,6 @@
         .tech-chip:hover { border-color: var(--primary); }
         .tech-chip img { width: 26px; height: 26px; object-fit: contain; }
 
-        /* soft skills tags below strip */
         .soft-skills-row {
             display: flex;
             flex-wrap: wrap;
@@ -276,7 +272,6 @@
 
         .lang-en [lang="tr"], .lang-tr [lang="en"] { display: none; }
 
-        /* Hamburger butonu */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -367,10 +362,10 @@
                 </div>
                 <div style="display:flex; gap:12px; justify-content:center;">
                     <div onclick="setLang('tr'); closeMenu();" style="display:flex;align-items:center;gap:8px;cursor:pointer;padding:10px 18px;border-radius:12px;border:1px solid rgba(241,39,226,0.2);font-weight:600;font-size:14px;">
-                        <img src="https://flagcdn.com/w40/tr.png" style="width:22px;border-radius:3px;"> Türkçe
+                        <span class="flag-text">🇹🇷</span> Türkçe
                     </div>
                     <div onclick="setLang('en'); closeMenu();" style="display:flex;align-items:center;gap:8px;cursor:pointer;padding:10px 18px;border-radius:12px;border:1px solid rgba(241,39,226,0.2);font-weight:600;font-size:14px;">
-                        <img src="https://flagcdn.com/w40/us.png" style="width:22px;border-radius:3px;"> English
+                        <span class="flag-text">🇺🇸</span> English
                     </div>
                 </div>
             </div>
@@ -388,14 +383,14 @@
             
             <div class="lang-dropdown">
                 <div class="lang-btn">
-                    <img src="https://flagcdn.com/w40/tr.png" class="flag-icon" id="header-flag"> <i class="fas fa-chevron-down" style="font-size: 12px; opacity: 0.5;"></i>
+                    <span class="flag-text" id="header-flag">🇹🇷</span> <i class="fas fa-chevron-down" style="font-size: 12px; opacity: 0.5;"></i>
                 </div>
                 <div class="lang-content">
                     <div class="lang-option active" id="opt-tr" onclick="setLang('tr')">
-                        <img src="https://flagcdn.com/w40/tr.png" class="flag-icon"> Türkçe
+                        <span class="flag-text">🇹🇷</span> Türkçe
                     </div>
                     <div class="lang-option" id="opt-en" onclick="setLang('en')">
-                        <img src="https://flagcdn.com/w40/us.png" class="flag-icon"> English
+                        <span class="flag-text">🇺🇸</span> English
                     </div>
                 </div>
             </div>
@@ -408,7 +403,7 @@
         <p style="font-size: 20px; opacity: 0.8;" lang="tr">Bilgisayar Programcılığı Öğrencisi</p>
         <p style="font-size: 20px; opacity: 0.8;" lang="en">Computer Programming Student</p>
         <p style="font-size: 15px; opacity: 0.55; max-width: 480px; line-height: 1.7; margin-top: 14px;" lang="tr">
-            Web teknolojileri, mobil uygulama geliştirme ve veri tabanı sistemleri üzerine yoğunlaşan bir geliştirici adayıyım.
+            Web teknolojileri, mobil uygulama geliştirme ver veri tabanı sistemleri üzerine yoğunlaşan bir geliştirici adayıyım.
         </p>
         <p style="font-size: 15px; opacity: 0.55; max-width: 480px; line-height: 1.7; margin-top: 14px;" lang="en">
             A developer candidate focused on web technologies, mobile application development and database systems.
@@ -537,7 +532,7 @@
         <h2 class="section-title" lang="tr">Teknolojiler</h2>
         <h2 class="section-title" lang="en">Technologies</h2>
         <p style="text-align:center; opacity:0.55; margin-top:-25px; margin-bottom:30px; font-size:14px;">
-            <span lang="tr">Proje geliştirirken kullandığım araçlarและ teknolojiler</span>
+            <span lang="tr">Proje geliştirirken kullandığım araçlar ve teknolojiler</span>
             <span lang="en">Tools and technologies I use to bring ideas to life</span>
         </p>
 
@@ -615,7 +610,6 @@
     </footer>
 
     <script>
-        // Smooth cursor blob — buscodes style
         const glow = document.getElementById('glow');
         let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
         let glowX = mouseX, glowY = mouseY;
@@ -634,12 +628,11 @@
         }
         animateGlow();
 
-        // Trailing sparkle particles
         let lastTrail = 0;
         const colors = ['#f127e2', '#ff79c6', '#f9d423', '#fff', '#d946ef'];
         document.addEventListener('mousemove', (e) => {
             const now = Date.now();
-            if (now - lastTrail < 30) return; // her 30ms'de bir nokta
+            if (now - lastTrail < 30) return;
             lastTrail = now;
 
             const dot = document.createElement('div');
@@ -654,7 +647,6 @@
             setTimeout(() => dot.remove(), 600);
         });
 
-        // Formspree
         const form = document.getElementById('contact-form');
         const formStatus = document.getElementById('form-status');
         form.addEventListener('submit', async (e) => {
@@ -709,27 +701,27 @@
             document.body.className = 'lang-' + l;
             const headerFlag = document.getElementById('header-flag');
             if(l === 'tr') {
-                headerFlag.src = "https://flagcdn.com/w40/tr.png";
+                headerFlag.innerText = "🇹🇷";
                 document.getElementById('opt-tr').classList.add('active');
                 document.getElementById('opt-en').classList.remove('active');
                 document.getElementById('inp-name').placeholder = "Adınız";
                 document.getElementById('inp-msg').placeholder = "Mesajınız...";
                 
-                // AI Projesi TR Değişiklikleri
                 document.getElementById('proj3-title').innerText = "AI Sağlık Koçu";
-                document.getElementById('proj3-tag2').innerText = "OpenAI API";
+                document.getElementById('proj3-title').nextElementSibling.style.display = "block";
+                document.getElementById('proj3-desc-en').style.display = "none";
                 document.getElementById('proj3-link').href = "https://github.com/pinarkirkpinar/AI_Saglik_Kocu";
             } else {
-                headerFlag.src = "https://flagcdn.com/w40/us.png";
+                headerFlag.innerText = "🇺🇸";
                 document.getElementById('opt-en').classList.add('active');
                 document.getElementById('opt-tr').classList.remove('active');
                 document.getElementById('inp-name').placeholder = "Your Name";
                 document.getElementById('inp-msg').placeholder = "Your Message...";
                 
-                // AI Projesi EN Değişiklikleri
                 document.getElementById('proj3-title').innerText = "AI Health Coach";
-                document.getElementById('proj3-tag2').innerText = "OpenAI API";
-                document.getElementById('proj3-link').href = "https://github.com/pinarkirkpinar/ai-healthcoach";
+                document.getElementById('proj3-title').nextElementSibling.style.display = "none";
+                document.getElementById('proj3-desc-en').style.display = "block";
+                document.getElementById('proj3-link').href = "https://github.com/pinarkirkpinar/AI_Saglik_Kocu";
             }
         }
     </script>
