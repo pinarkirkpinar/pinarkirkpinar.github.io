@@ -10,72 +10,47 @@
         :root {
             --primary: #f127e2; --bg-light: #fff5f8; --text-light: #333;
             --bg-dark: #0f0f1a; --text-dark: #fff; --glass: rgba(255, 255, 255, 0.7);
-            --github-filter: none;
-            --expo-filter: none;
+            --github-filter: none; --expo-filter: none;
         }
-        
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         body { background: var(--bg-light); color: var(--text-light); transition: 0.5s; overflow-x: hidden; }
         body.dark-mode { background: var(--bg-dark); color: var(--text-dark); --glass: rgba(15, 15, 26, 0.8); --github-filter: invert(1); --expo-filter: invert(1); }
 
         #glow {
-            position: fixed;
-            width: 500px; height: 500px;
+            position: fixed; width: 500px; height: 500px;
             background: radial-gradient(circle, rgba(241, 39, 226, 0.12) 0%, rgba(241, 39, 226, 0.05) 40%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 0;
-            transition: left 0.8s cubic-bezier(0.23, 1, 0.32, 1), top 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-            filter: blur(8px);
+            border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%);
+            z-index: 0; filter: blur(8px);
         }
         #sparkle { display: none; }
-
         .trail-dot {
-            position: fixed;
-            width: 6px; height: 6px;
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 10001;
-            animation: trailFade 0.6s ease-out forwards;
+            position: fixed; width: 6px; height: 6px; border-radius: 50%;
+            pointer-events: none; transform: translate(-50%, -50%);
+            z-index: 10001; animation: trailFade 0.6s ease-out forwards;
         }
         @keyframes trailFade {
             0%   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
             100% { opacity: 0; transform: translate(-50%, -50%) scale(0.1); }
         }
 
-        nav { 
-            display: flex; justify-content: space-between; align-items: center; 
+        /* NAV */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
             padding: 15px 8%; position: sticky; top: 0; z-index: 1000;
             background: var(--glass); backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(241, 39, 226, 0.1);
         }
-        .logo { font-weight: 800; color: var(--primary); font-size: 22px; text-decoration: none; }
+        .logo { font-weight: 800; color: var(--primary); font-size: 22px; text-decoration: none; flex-shrink: 0; }
         .nav-center { display: flex; gap: 25px; }
         .nav-center a { text-decoration: none; color: inherit; font-size: 14px; font-weight: 500; opacity: 0.7; transition: 0.3s; }
         .nav-center a:hover { opacity: 1; color: var(--primary); }
 
         .lang-dropdown { position: relative; display: inline-block; }
-        .lang-btn { 
-            background: transparent; border: 1px solid rgba(241,39,226,0.2); 
-            padding: 8px 15px; border-radius: 12px; cursor: pointer; 
-            display: flex; align-items: center; gap: 10px; font-size: 18px;
-        }
-        .lang-content { 
-            display: none; position: absolute; right: 0; background: white; 
-            min-width: 180px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-            z-index: 10; top: 100%; padding: 10px;
-        }
-        .lang-dropdown::after {
-            content: ''; position: absolute; top: 100%; left: 0; width: 100%; height: 20px; display: none;
-        }
+        .lang-btn { background: transparent; border: 1px solid rgba(241,39,226,0.2); padding: 8px 15px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 18px; }
+        .lang-content { display: none; position: absolute; right: 0; background: white; min-width: 180px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); z-index: 10; top: 100%; padding: 10px; }
+        .lang-dropdown::after { content: ''; position: absolute; top: 100%; left: 0; width: 100%; height: 20px; display: none; }
         .lang-dropdown:hover .lang-content, .lang-dropdown:hover::after { display: block; }
-        
-        .lang-option { 
-            padding: 12px; display: flex; align-items: center; gap: 15px; 
-            cursor: pointer; border-radius: 10px; transition: 0.3s; color: #888; font-weight: 500;
-        }
+        .lang-option { padding: 12px; display: flex; align-items: center; gap: 15px; cursor: pointer; border-radius: 10px; transition: 0.3s; color: #888; font-weight: 500; }
         .lang-option:hover { background: #fff5f8; }
         .lang-option.active { color: var(--primary); }
         .flag-text { font-size: 20px; }
@@ -84,22 +59,19 @@
         .social-nav-icons { display: flex; gap: 15px; align-items: center; }
         .social-nav-icons a { color: inherit; font-size: 20px; transition: 0.3s; opacity: 0.7; }
         .social-nav-icons a:hover { color: var(--primary); opacity: 1; transform: scale(1.1); }
-        
         .theme-dots { display: flex; gap: 8px; background: rgba(0,0,0,0.05); padding: 5px 12px; border-radius: 50px; border: 1px solid rgba(241,39,226,0.1); }
         .dot { width: 20px; height: 20px; border-radius: 50%; cursor: pointer; }
         .dot.black { background: #1a1a2e; }
         .dot.white { background: #ffffff; border: 1px solid #ddd; }
 
+        /* SECTIONS */
         section { padding: 80px 10%; position: relative; z-index: 1; }
-        .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding-top: 60px; padding-bottom: 60px; }
         .hero h1 { font-size: 75px; font-weight: 800; color: var(--primary); margin-bottom: 20px; }
-        
+
         .contact-container { max-width: 600px; margin: 0 auto; background: var(--glass); padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
         .input-group { margin-bottom: 20px; text-align: left; }
-        input, textarea { 
-            width: 100%; padding: 15px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.05); 
-            background: rgba(255,255,255,0.5); font-size: 14px; outline: none; transition: 0.3s;
-        }
+        input, textarea { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.05); background: rgba(255,255,255,0.5); font-size: 14px; outline: none; transition: 0.3s; }
         input:focus, textarea:focus { border-color: var(--primary); background: white; }
         .btn-main { padding: 15px 35px; border-radius: 50px; border: none; background: linear-gradient(45deg, #f127e2, #f9d423); color: white; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
         .btn-outline { padding: 15px 35px; border-radius: 50px; border: 1px solid var(--primary); background: transparent; color: var(--primary); font-weight: 700; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; transition: 0.3s; }
@@ -108,163 +80,34 @@
         .section-title { font-size: 40px; color: var(--primary); margin-bottom: 40px; text-align: center; }
         .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
         .p-card { background: var(--glass); border-radius: 20px; border: 1px solid rgba(241,39,226,0.1); transition: 0.3s; }
-        .tech-icons { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px; }
-        .tech-item { width: 60px; height: 60px; background: var(--glass); display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 28px; }
 
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: start;
-        }
-        .about-text-card {
-            background: var(--glass);
-            border: 1px solid rgba(241,39,226,0.12);
-            border-radius: 24px;
-            padding: 36px;
-        }
-        .about-text-card p {
-            font-size: 16px;
-            line-height: 1.8;
-            opacity: 0.85;
-        }
-        .about-details {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .detail-row {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            background: var(--glass);
-            border: 1px solid rgba(241,39,226,0.1);
-            border-radius: 16px;
-            padding: 18px 22px;
-        }
-        .detail-icon {
-            width: 42px;
-            height: 42px;
-            background: linear-gradient(135deg, rgba(241,39,226,0.15), rgba(249,212,35,0.1));
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            color: var(--primary);
-            flex-shrink: 0;
-        }
-        .detail-label {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0.5;
-            margin-bottom: 4px;
-        }
-        .detail-value {
-            font-size: 14px;
-            font-weight: 600;
-        }
+        /* ABOUT */
+        .detail-row { display: flex; align-items: flex-start; gap: 16px; background: var(--glass); border: 1px solid rgba(241,39,226,0.1); border-radius: 16px; padding: 18px 22px; }
+        .detail-icon { width: 42px; height: 42px; background: linear-gradient(135deg, rgba(241,39,226,0.15), rgba(249,212,35,0.1)); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--primary); flex-shrink: 0; }
+        .detail-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.5; margin-bottom: 4px; }
+        .detail-value { font-size: 14px; font-weight: 600; }
 
-        .stats-row {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 50px;
-            flex-wrap: wrap;
-        }
-        .stat-box {
-            text-align: center;
-            background: var(--glass);
-            border: 1px solid rgba(241,39,226,0.12);
-            border-radius: 20px;
-            padding: 28px 32px;
-            min-width: 130px;
-            transition: 0.3s;
-        }
+        /* STATS */
+        .stats-row { display: flex; justify-content: center; gap: 40px; margin-top: 50px; flex-wrap: wrap; }
+        .stat-box { text-align: center; background: var(--glass); border: 1px solid rgba(241,39,226,0.12); border-radius: 20px; padding: 28px 32px; min-width: 130px; transition: 0.3s; }
         .stat-box:hover { border-color: var(--primary); transform: translateY(-4px); }
-        .stat-icon {
-            font-size: 22px;
-            color: var(--primary);
-            margin-bottom: 10px;
-            opacity: 0.8;
-        }
-        .stat-number {
-            font-size: 38px;
-            font-weight: 800;
-            color: var(--primary);
-            line-height: 1;
-        }
-        .stat-label {
-            font-size: 12px;
-            opacity: 0.55;
-            margin-top: 6px;
-            font-weight: 500;
-        }
+        .stat-icon { font-size: 22px; color: var(--primary); margin-bottom: 10px; opacity: 0.8; }
+        .stat-number { font-size: 38px; font-weight: 800; color: var(--primary); line-height: 1; }
+        .stat-label { font-size: 12px; opacity: 0.55; margin-top: 6px; font-weight: 500; }
 
-        .tech-strip-wrapper {
-            overflow: hidden;
-            position: relative;
-            margin-top: 20px;
-            padding: 10px 0;
-        }
-        .tech-strip-wrapper::before,
-        .tech-strip-wrapper::after {
-            content: '';
-            position: absolute;
-            top: 0; bottom: 0;
-            width: 80px;
-            z-index: 2;
-        }
+        /* TECH STRIP */
+        .tech-strip-wrapper { overflow: hidden; position: relative; margin-top: 20px; padding: 10px 0; }
+        .tech-strip-wrapper::before, .tech-strip-wrapper::after { content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; }
         .tech-strip-wrapper::before { left: 0; background: linear-gradient(to right, var(--bg-light), transparent); }
         .tech-strip-wrapper::after  { right: 0; background: linear-gradient(to left,  var(--bg-light), transparent); }
         body.dark-mode .tech-strip-wrapper::before { background: linear-gradient(to right, var(--bg-dark), transparent); }
         body.dark-mode .tech-strip-wrapper::after  { background: linear-gradient(to left,  var(--bg-dark), transparent); }
-
-        .tech-strip {
-            display: flex;
-            gap: 20px;
-            width: max-content;
-            animation: scrollLeft 28s linear infinite;
-        }
+        .tech-strip { display: flex; gap: 20px; width: max-content; animation: scrollLeft 28s linear infinite; }
         .tech-strip:hover { animation-play-state: paused; }
-        @keyframes scrollLeft {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .tech-chip {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--glass);
-            border: 1px solid rgba(241,39,226,0.12);
-            border-radius: 14px;
-            padding: 12px 20px;
-            white-space: nowrap;
-            font-size: 14px;
-            font-weight: 600;
-            transition: border-color 0.3s;
-            cursor: default;
-        }
+        @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .tech-chip { display: flex; align-items: center; gap: 10px; background: var(--glass); border: 1px solid rgba(241,39,226,0.12); border-radius: 14px; padding: 12px 20px; white-space: nowrap; font-size: 14px; font-weight: 600; transition: border-color 0.3s; cursor: default; }
         .tech-chip:hover { border-color: var(--primary); }
         .tech-chip img { width: 26px; height: 26px; object-fit: contain; }
-
-        .soft-skills-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 30px;
-        }
-        .skill-tag {
-            background: rgba(241,39,226,0.08);
-            border: 1px solid rgba(241,39,226,0.15);
-            color: inherit;
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 500;
-        }
 
         footer { padding: 30px 8%; display: flex; justify-content: space-between; align-items: center; font-size: 12px; opacity: 0.6; margin-top: 50px; border-top: 1px solid rgba(241, 39, 226, 0.05); }
         .footer-socials { display: flex; gap: 15px; font-size: 16px; }
@@ -273,61 +116,47 @@
 
         .lang-en [lang="tr"], .lang-tr [lang="en"] { display: none; }
 
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 5px;
-            z-index: 1100;
-        }
-        .hamburger span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: var(--primary);
-            border-radius: 2px;
-            transition: 0.3s;
-        }
+        /* HAMBURGER */
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; z-index: 1100; }
+        .hamburger span { display: block; width: 24px; height: 2px; background: var(--primary); border-radius: 2px; transition: 0.3s; }
         .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
         .hamburger.open span:nth-child(2) { opacity: 0; }
         .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-        .mobile-menu-extras {
-            display: none;
-            flex-direction: column;
-            gap: 20px;
-            align-items: center;
-            padding-top: 10px;
-            border-top: 1px solid rgba(241,39,226,0.15);
-            width: 100%;
-        }
-        @media (max-width: 768px) {
-            .mobile-menu-extras { display: flex; }
-            .about-grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 48px; }
+        .mobile-menu-extras { display: none; flex-direction: column; gap: 20px; align-items: center; padding-top: 20px; border-top: 1px solid rgba(241,39,226,0.15); width: 100%; }
 
+        /* MOBILE */
+        @media (max-width: 768px) {
             .hamburger { display: flex; }
+            .mobile-menu-extras { display: flex; }
 
             .nav-center {
-                display: none;
-                position: fixed;
-                top: 0; left: 0;
+                display: none; position: fixed; top: 0; left: 0;
                 width: 100%; height: 100vh;
-                background: var(--glass);
-                backdrop-filter: blur(20px);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 36px;
-                z-index: 1050;
+                background: var(--glass); backdrop-filter: blur(20px);
+                flex-direction: column; align-items: center; justify-content: center;
+                gap: 32px; z-index: 1050; overflow-y: auto; padding: 40px 20px;
             }
             .nav-center.open { display: flex; }
-            .nav-center a { font-size: 22px; opacity: 0.9; }
-
+            .nav-center > a { font-size: 22px; opacity: 0.9; }
             .social-nav-icons { display: none; }
             .theme-dots { display: none; }
             .lang-dropdown { display: none; }
+
+            /* Hero düzeltmesi — başlık hamburgerle çakışmasın */
+            .hero { min-height: auto; padding-top: 40px; padding-bottom: 50px; }
+            .hero h1 { font-size: 38px; margin-bottom: 10px; }
+
+            /* Butonlar alt alta */
+            .hero-buttons { flex-direction: column; align-items: stretch; width: 100%; max-width: 300px; }
+            .hero-buttons .btn-main,
+            .hero-buttons .btn-outline { width: 100%; justify-content: center; }
+
+            .stats-row { gap: 16px; margin-top: 30px; }
+            .stat-box { padding: 18px 20px; min-width: 110px; }
+            .stat-number { font-size: 28px; }
+
+            .section-title { font-size: 28px; }
         }
     </style>
 </head>
@@ -338,18 +167,15 @@
 
     <nav>
         <a href="#" class="logo">pincodes</a>
-
         <div class="hamburger" id="hamburger" onclick="toggleMenu()">
             <span></span><span></span><span></span>
         </div>
-
         <div class="nav-center" id="navCenter">
             <a href="#home" onclick="closeMenu()"><span lang="tr">Ana Sayfa</span><span lang="en">Home</span></a>
             <a href="#about" onclick="closeMenu()"><span lang="tr">Hakkımda</span><span lang="en">About</span></a>
             <a href="#projects" onclick="closeMenu()"><span lang="tr">Projeler</span><span lang="en">Projects</span></a>
             <a href="#skills" onclick="closeMenu()"><span lang="tr">Beceriler</span><span lang="en">Skills</span></a>
             <a href="#contact" onclick="closeMenu()"><span lang="tr">İletişim</span><span lang="en">Contact</span></a>
-
             <div class="mobile-menu-extras">
                 <div style="display:flex; gap:20px; justify-content:center;">
                     <a href="https://github.com/pinarkirkpinar" target="_blank" style="color:inherit; font-size:26px;"><i class="fab fa-github"></i></a>
@@ -376,40 +202,36 @@
                 <a href="https://github.com/pinarkirkpinar" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/pinarkirkpinar/" target="_blank"><i class="fab fa-linkedin"></i></a>
             </div>
-
             <div class="theme-dots">
                 <div class="dot black" onclick="setTheme('dark')"></div>
                 <div class="dot white" onclick="setTheme('light')"></div>
             </div>
-            
             <div class="lang-dropdown">
                 <div class="lang-btn">
-                    <span class="flag-text" id="header-flag">🇹🇷</span> <i class="fas fa-chevron-down" style="font-size: 12px; opacity: 0.5;"></i>
+                    <span class="flag-text" id="header-flag">🇹🇷</span>
+                    <i class="fas fa-chevron-down" style="font-size: 12px; opacity: 0.5;"></i>
                 </div>
                 <div class="lang-content">
-                    <div class="lang-option active" id="opt-tr" onclick="setLang('tr')">
-                        <span class="flag-text">🇹🇷</span> Türkçe
-                    </div>
-                    <div class="lang-option" id="opt-en" onclick="setLang('en')">
-                        <span class="flag-text">🇺🇸</span> English
-                    </div>
+                    <div class="lang-option active" id="opt-tr" onclick="setLang('tr')"><span class="flag-text">🇹🇷</span> Türkçe</div>
+                    <div class="lang-option" id="opt-en" onclick="setLang('en')"><span class="flag-text">🇺🇸</span> English</div>
                 </div>
             </div>
         </div>
     </nav>
 
+    <!-- HERO -->
     <section class="hero" id="home">
         <h1 lang="tr">Selam, Ben Pınar</h1>
         <h1 lang="en">Hi, I'm Pinar</h1>
         <p style="font-size: 20px; opacity: 0.8;" lang="tr">Bilgisayar Programcılığı Öğrencisi</p>
         <p style="font-size: 20px; opacity: 0.8;" lang="en">Computer Programming Student</p>
         <p style="font-size: 15px; opacity: 0.55; max-width: 480px; line-height: 1.7; margin-top: 14px;" lang="tr">
-            Web teknolojileri, mobil uygulama geliştirme ver veri tabanı sistemleri üzerine yoğunlaşan bir geliştirici adayıyım.
+            Web teknolojileri, mobil uygulama geliştirme ve veri tabanı sistemleri üzerine yoğunlaşan bir geliştirici adayıyım.
         </p>
         <p style="font-size: 15px; opacity: 0.55; max-width: 480px; line-height: 1.7; margin-top: 14px;" lang="en">
             A developer candidate focused on web technologies, mobile application development and database systems.
         </p>
-        <div style="margin-top: 36px; display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+        <div class="hero-buttons" style="margin-top: 36px; display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
             <a href="#contact" class="btn-main"><span lang="tr">İletişim</span><span lang="en">Contact</span></a>
             <a href="#projects" class="btn-outline"><span lang="tr">Projeleri Gör</span><span lang="en">View Projects</span></a>
             <a href="Pinar_Kirkpinar_CV_TR.pdf" target="_blank" class="btn-outline"><i class="fas fa-file-pdf" style="margin-right: 8px;"></i><span lang="tr">CV İndir</span><span lang="en">Download CV (TR)</span></a>
@@ -429,10 +251,10 @@
         </div>
     </section>
 
+    <!-- HAKKIMDA -->
     <section id="about">
         <h2 class="section-title" lang="tr">Hakkımda</h2>
         <h2 class="section-title" lang="en">About Me</h2>
-
         <p style="text-align:center; max-width:580px; margin: -20px auto 40px; font-size:15px; line-height:1.8; opacity:0.7;" lang="tr">
             İzmir Ekonomi Üniversitesi Bilgisayar Programcılığı bölümü öğrencisiyim. Web teknolojileri, mobil uygulama geliştirme ve veri tabanı sistemleri üzerine yoğunlaşıyor; öğrendiğim bilgileri gerçek projelere dönüştürmeye çalışıyorum.
         </p>
@@ -464,6 +286,7 @@
         </div>
     </section>
 
+    <!-- PROJELER -->
     <section id="projects">
         <h2 class="section-title" lang="tr">Öne Çıkan Projeler</h2>
         <h2 class="section-title" lang="en">Featured Projects</h2>
@@ -483,9 +306,7 @@
                             <span style="background: #f0f0f0; padding: 5px 10px; border-radius: 8px; font-size: 12px;">JavaScript</span>
                         </div>
                     </div>
-                    <div style="margin-top: auto;">
-                        <a href="https://github.com/pinarkirkpinar/flashcards-app" target="_blank" style="display: block; text-align: center; padding: 10px; border: 1px solid #ddd; border-radius: 10px; text-decoration: none; color: #333; font-weight: bold;">GitHub</a>
-                    </div>
+                    <a href="https://github.com/pinarkirkpinar/flashcards-app" target="_blank" style="display: block; text-align: center; padding: 10px; border: 1px solid #ddd; border-radius: 10px; text-decoration: none; color: #333; font-weight: bold;">GitHub</a>
                 </div>
             </div>
             <div class="p-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
@@ -502,9 +323,7 @@
                             <span style="background: #f0f0f0; padding: 5px 10px; border-radius: 8px; font-size: 12px;">MySQL</span>
                         </div>
                     </div>
-                    <div style="margin-top: auto;">
-                        <a href="https://github.com/pinarkirkpinar/petshop-web" target="_blank" style="display: block; text-align: center; padding: 10px; border: 1px solid #ddd; border-radius: 10px; text-decoration: none; color: #333; font-weight: bold;">GitHub</a>
-                    </div>
+                    <a href="https://github.com/pinarkirkpinar/petshop-web" target="_blank" style="display: block; text-align: center; padding: 10px; border: 1px solid #ddd; border-radius: 10px; text-decoration: none; color: #333; font-weight: bold;">GitHub</a>
                 </div>
             </div>
             <div class="p-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
@@ -514,21 +333,20 @@
                 <div style="padding: 25px; background: white; color: #333; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
                     <div>
                         <h3 id="proj3-title">AI Sağlık Koçu</h3>
-                        <p id="proj3-desc" lang="tr">Yapay zeka entegrasyonu ile kişiselleştirilmiş sağlık ve beslenme analiz platformu.</p>
-                        <p id="proj3-desc-en" lang="en">Personalized health and nutrition analysis platform with AI integration.</p>
+                        <p lang="tr">Yapay zeka entegrasyonu ile kişiselleştirilmiş sağlık ve beslenme analiz platformu.</p>
+                        <p lang="en">Personalized health and nutrition analysis platform with AI integration.</p>
                         <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0;">
                             <span style="background: #f0f0f0; padding: 5px 10px; border-radius: 8px; font-size: 12px;">JavaScript</span>
-                            <span id="proj3-tag2" style="background: #f0f0f0; padding: 5px 10px; border-radius: 8px; font-size: 12px;">OpenAI API</span>
+                            <span style="background: #f0f0f0; padding: 5px 10px; border-radius: 8px; font-size: 12px;">OpenAI API</span>
                         </div>
                     </div>
-                    <div style="margin-top: auto;">
-                        <a id="proj3-link" href="https://github.com/pinarkirkpinar/AI_Saglik_Kocu" target="_blank" style="display: block; text-align: center; padding: 10px; border: 1px solid #ddd; border-radius: 10px; text-decoration: none; color: #333; font-weight: bold;">GitHub</a>
-                    </div>
+                    <a id="proj3-link" href="https://github.com/pinarkirkpinar/AI_Saglik_Kocu" target="_blank" style="display: block; text-align: center; padding: 10px; border: 1px solid #ddd; border-radius: 10px; text-decoration: none; color: #333; font-weight: bold;">GitHub</a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- BECERİLER -->
     <section id="skills">
         <h2 class="section-title" lang="tr">Teknolojiler</h2>
         <h2 class="section-title" lang="en">Technologies</h2>
@@ -536,9 +354,8 @@
             <span lang="tr">Proje geliştirirken kullandığım araçlar ve teknolojiler</span>
             <span lang="en">Tools and technologies I use to bring ideas to life</span>
         </p>
-
         <div class="tech-strip-wrapper">
-            <div class="tech-strip" id="techStrip">
+            <div class="tech-strip">
                 <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JS"> JavaScript</div>
                 <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP"> PHP</div>
                 <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python"> Python</div>
@@ -550,6 +367,7 @@
                 <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5"> HTML5</div>
                 <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3"> CSS3</div>
                 <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/expo/expo-original.svg" alt="Expo" style="filter: var(--expo-filter)"> Expo</div>
+                <!-- duplicate -->
                 <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JS"> JavaScript</div>
                 <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP"> PHP</div>
                 <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python"> Python</div>
@@ -565,32 +383,29 @@
         </div>
     </section>
 
+    <!-- İLETİŞİM -->
     <section id="contact" style="text-align: center;">
-        <h2 class="section-title" lang="tr">İletişime Geç</h2><h2 class="section-title" lang="en">Get in Touch</h2>
-
+        <h2 class="section-title" lang="tr">İletişime Geç</h2>
+        <h2 class="section-title" lang="en">Get in Touch</h2>
         <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-bottom: 40px;">
             <a href="mailto:pinarkrkpnr24@gmail.com" style="display:flex; align-items:center; gap:10px; padding: 14px 24px; background: var(--glass); border: 1px solid rgba(241,39,226,0.15); border-radius: 14px; text-decoration: none; color: inherit; font-weight: 600; font-size: 14px; transition: 0.3s;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='rgba(241,39,226,0.15)'">
-                <i class="fas fa-envelope" style="color: var(--primary); font-size: 18px;"></i>
-                pinarkrkpnr24@gmail.com
+                <i class="fas fa-envelope" style="color: var(--primary); font-size: 18px;"></i> pinarkrkpnr24@gmail.com
             </a>
             <a href="https://www.linkedin.com/in/pinarkirkpinar/" target="_blank" style="display:flex; align-items:center; gap:10px; padding: 14px 24px; background: var(--glass); border: 1px solid rgba(241,39,226,0.15); border-radius: 14px; text-decoration: none; color: inherit; font-weight: 600; font-size: 14px; transition: 0.3s;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='rgba(241,39,226,0.15)'">
-                <i class="fab fa-linkedin" style="color: var(--primary); font-size: 18px;"></i>
-                LinkedIn
+                <i class="fab fa-linkedin" style="color: var(--primary); font-size: 18px;"></i> LinkedIn
             </a>
             <a href="https://github.com/pinarkirkpinar" target="_blank" style="display:flex; align-items:center; gap:10px; padding: 14px 24px; background: var(--glass); border: 1px solid rgba(241,39,226,0.15); border-radius: 14px; text-decoration: none; color: inherit; font-weight: 600; font-size: 14px; transition: 0.3s;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='rgba(241,39,226,0.15)'">
-                <i class="fab fa-github" style="color: var(--primary); font-size: 18px;"></i>
-                GitHub
+                <i class="fab fa-github" style="color: var(--primary); font-size: 18px;"></i> GitHub
             </a>
         </div>
-
         <div class="contact-container">
-        <form id="contact-form">
-            <div class="input-group"><input type="text" name="name" id="inp-name" placeholder="Adınız" required></div>
-            <div class="input-group"><input type="email" name="email" id="inp-mail" placeholder="ornek@email.com" required></div>
-            <div class="input-group"><textarea name="message" id="inp-msg" rows="5" placeholder="Mesajınız..." required></textarea></div>
-            <button type="submit" class="btn-main" style="width: 100%;"><span lang="tr">Mesaj Gönder</span><span lang="en">Send Message</span></button>
-            <p id="form-status" style="margin-top: 14px; font-weight: 600; font-size: 14px;"></p>
-        </form>
+            <form id="contact-form">
+                <div class="input-group"><input type="text" name="name" id="inp-name" placeholder="Adınız" required></div>
+                <div class="input-group"><input type="email" name="email" id="inp-mail" placeholder="ornek@email.com" required></div>
+                <div class="input-group"><textarea name="message" id="inp-msg" rows="5" placeholder="Mesajınız..." required></textarea></div>
+                <button type="submit" class="btn-main" style="width: 100%;"><span lang="tr">Mesaj Gönder</span><span lang="en">Send Message</span></button>
+                <p id="form-status" style="margin-top: 14px; font-weight: 600; font-size: 14px;"></p>
+            </form>
         </div>
     </section>
 
@@ -611,15 +426,11 @@
     </footer>
 
     <script>
+        // Smooth glow blob
         const glow = document.getElementById('glow');
         let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
         let glowX = mouseX, glowY = mouseY;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
+        document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
         function animateGlow() {
             glowX += (mouseX - glowX) * 0.06;
             glowY += (mouseY - glowY) * 0.06;
@@ -629,13 +440,13 @@
         }
         animateGlow();
 
+        // Trailing sparkles
         let lastTrail = 0;
         const colors = ['#f127e2', '#ff79c6', '#f9d423', '#fff', '#d946ef'];
         document.addEventListener('mousemove', (e) => {
             const now = Date.now();
             if (now - lastTrail < 30) return;
             lastTrail = now;
-
             const dot = document.createElement('div');
             dot.className = 'trail-dot';
             dot.style.left = e.clientX + 'px';
@@ -648,45 +459,38 @@
             setTimeout(() => dot.remove(), 600);
         });
 
+        // Formspree
         const form = document.getElementById('contact-form');
         const formStatus = document.getElementById('form-status');
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             formStatus.textContent = '⏳ Gönderiliyor...';
             formStatus.style.color = 'var(--primary)';
-            
+            formStatus.style.opacity = '1';
             const data = new FormData(form);
             try {
-                const res = await fetch('https://formspree.io/f/xdajnzky', {
-                    method: 'POST',
-                    body: data,
-                    headers: { 'Accept': 'application/json' }
-                });
+                const res = await fetch('https://formspree.io/f/xdajnzky', { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
                 const json = await res.json();
                 if (res.ok) {
                     formStatus.textContent = '✅ Mesajın iletildi, teşekkürler!';
                     formStatus.style.color = 'var(--primary)';
                     form.reset();
                 } else {
-                    const errMsg = json.errors ? json.errors.map(e => e.message).join(', ') : 'Bilinmeyen hata';
-                    formStatus.textContent = '❌ Hata: ' + errMsg;
+                    formStatus.textContent = '❌ Hata: ' + (json.errors ? json.errors.map(e => e.message).join(', ') : 'Bilinmeyen hata');
                     formStatus.style.color = 'red';
                 }
             } catch (err) {
                 formStatus.textContent = '❌ Bağlantı hatası, tekrar dene.';
                 formStatus.style.color = 'red';
             }
-
             setTimeout(() => {
                 formStatus.style.transition = 'opacity 0.8s';
                 formStatus.style.opacity = '0';
-                setTimeout(() => {
-                    formStatus.textContent = '';
-                    formStatus.style.opacity = '1';
-                }, 800);
+                setTimeout(() => { formStatus.textContent = ''; formStatus.style.opacity = '1'; formStatus.style.transition = ''; }, 800);
             }, 5000);
         });
 
+        // Hamburger
         function toggleMenu() {
             document.getElementById('hamburger').classList.toggle('open');
             document.getElementById('navCenter').classList.toggle('open');
@@ -696,33 +500,25 @@
             document.getElementById('navCenter').classList.remove('open');
         }
 
-        function setTheme(t) { t==='dark' ? document.body.classList.add('dark-mode') : document.body.classList.remove('dark-mode'); }
+        function setTheme(t) { t === 'dark' ? document.body.classList.add('dark-mode') : document.body.classList.remove('dark-mode'); }
 
         function setLang(l) {
             document.body.className = 'lang-' + l;
             const headerFlag = document.getElementById('header-flag');
-            if(l === 'tr') {
+            if (l === 'tr') {
                 headerFlag.innerText = "🇹🇷";
                 document.getElementById('opt-tr').classList.add('active');
                 document.getElementById('opt-en').classList.remove('active');
                 document.getElementById('inp-name').placeholder = "Adınız";
                 document.getElementById('inp-msg').placeholder = "Mesajınız...";
-                
                 document.getElementById('proj3-title').innerText = "AI Sağlık Koçu";
-                document.getElementById('proj3-title').nextElementSibling.style.display = "block";
-                document.getElementById('proj3-desc-en').style.display = "none";
-                document.getElementById('proj3-link').href = "https://github.com/pinarkirkpinar/AI_Saglik_Kocu";
             } else {
                 headerFlag.innerText = "🇺🇸";
                 document.getElementById('opt-en').classList.add('active');
                 document.getElementById('opt-tr').classList.remove('active');
                 document.getElementById('inp-name').placeholder = "Your Name";
                 document.getElementById('inp-msg').placeholder = "Your Message...";
-                
                 document.getElementById('proj3-title').innerText = "AI Health Coach";
-                document.getElementById('proj3-title').nextElementSibling.style.display = "none";
-                document.getElementById('proj3-desc-en').style.display = "block";
-                document.getElementById('proj3-link').href = "https://github.com/pinarkirkpinar/AI_Saglik_Kocu";
             }
         }
     </script>
