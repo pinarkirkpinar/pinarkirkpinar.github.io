@@ -343,7 +343,6 @@
     <nav>
         <a href="#" class="logo">pincodes</a>
 
-        <!-- Hamburger butonu (mobilde görünür) -->
         <div class="hamburger" id="hamburger" onclick="toggleMenu()">
             <span></span><span></span><span></span>
         </div>
@@ -355,21 +354,17 @@
             <a href="#skills" onclick="closeMenu()"><span lang="tr">Beceriler</span><span lang="en">Skills</span></a>
             <a href="#contact" onclick="closeMenu()"><span lang="tr">İletişim</span><span lang="en">Contact</span></a>
 
-            <!-- Mobilde görünen ekstra kontroller -->
             <div class="mobile-menu-extras">
-                <!-- Sosyal ikonlar -->
                 <div style="display:flex; gap:20px; justify-content:center;">
                     <a href="https://github.com/pinarkirkpinar" target="_blank" style="color:inherit; font-size:26px;"><i class="fab fa-github"></i></a>
                     <a href="https://www.linkedin.com/in/pinarkirkpinar/" target="_blank" style="color:inherit; font-size:26px;"><i class="fab fa-linkedin"></i></a>
                 </div>
-                <!-- Tema seçimi -->
                 <div style="display:flex; gap:10px; justify-content:center; align-items:center;">
                     <span style="font-size:12px; opacity:0.5; font-weight:500;" lang="tr">Tema</span>
                     <span style="font-size:12px; opacity:0.5; font-weight:500;" lang="en">Theme</span>
                     <div class="dot black" onclick="setTheme('dark')" style="width:22px;height:22px;"></div>
                     <div class="dot white" onclick="setTheme('light')" style="width:22px;height:22px;border:1px solid #ddd;"></div>
                 </div>
-                <!-- Dil seçimi -->
                 <div style="display:flex; gap:12px; justify-content:center;">
                     <div onclick="setLang('tr'); closeMenu();" style="display:flex;align-items:center;gap:8px;cursor:pointer;padding:10px 18px;border-radius:12px;border:1px solid rgba(241,39,226,0.2);font-weight:600;font-size:14px;">
                         <img src="https://flagcdn.com/w40/tr.png" style="width:22px;border-radius:3px;"> Türkçe
@@ -407,7 +402,6 @@
         </div>
     </nav>
 
-    <!-- HERO -->
     <section class="hero" id="home">
         <h1 lang="tr">Selam, Ben Pınar</h1>
         <h1 lang="en">Hi, I'm Pinar</h1>
@@ -439,7 +433,6 @@
         </div>
     </section>
 
-    <!-- HAKKIMDA -->
     <section id="about">
         <h2 class="section-title" lang="tr">Hakkımda</h2>
         <h2 class="section-title" lang="en">About Me</h2>
@@ -475,7 +468,6 @@
         </div>
     </section>
 
-    <!-- PROJEler -->
     <section id="projects">
         <h2 class="section-title" lang="tr">Öne Çıkan Projeler</h2>
         <h2 class="section-title" lang="en">Featured Projects</h2>
@@ -521,27 +513,26 @@
             </div>
             <div class="p-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
                 <div style="height: 250px; background: linear-gradient(135deg, #3d1a40 0%, #0f0f1a 100%); position: relative; display: flex; align-items: center; justify-content: center;">
-                    <i class="fas fa-cloud-sun" style="font-size: 60px; color: #f9d423; opacity: 0.8;"></i>
+                    <i class="fas fa-robot" style="font-size: 60px; color: #f9d423; opacity: 0.8;"></i>
                 </div>
                 <div style="padding: 25px; background: white; color: #333; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
                     <div>
-                        <h3>Bored API</h3>
-                        <p lang="tr">Asenkron JavaScript mimarisi ile dinamik veri entegrasyonu projesi.</p>
-                        <p lang="en">Dynamic data integration project with asynchronous JavaScript architecture.</p>
+                        <h3>AI Sağlık Koçu</h3>
+                        <p lang="tr">Yapay zeka entegrasyonu ile kişiselleştirilmiş sağlık ve beslenme analiz platformu.</p>
+                        <p lang="en">Personalized health and nutrition analysis platform with AI integration.</p>
                         <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0;">
                             <span style="background: #f0f0f0; padding: 5px 10px; border-radius: 8px; font-size: 12px;">JavaScript</span>
-                            <span style="background: #f0f0f0; padding: 5px 10px; border-radius: 8px; font-size: 12px;">Fetch API</span>
+                            <span style="background: #f0f0f0; padding: 5px 10px; border-radius: 8px; font-size: 12px;">OpenAI API</span>
                         </div>
                     </div>
                     <div style="margin-top: auto;">
-                        <a href="https://github.com/pinarkirkpinar/bored-api" target="_blank" style="display: block; text-align: center; padding: 10px; border: 1px solid #ddd; border-radius: 10px; text-decoration: none; color: #333; font-weight: bold;">GitHub</a>
+                        <a href="https://github.com/pinarkirkpinar/ai-health-coach" target="_blank" style="display: block; text-align: center; padding: 10px; border: 1px solid #ddd; border-radius: 10px; text-decoration: none; color: #333; font-weight: bold;">GitHub</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- BECERİLER -->
     <section id="skills">
         <h2 class="section-title" lang="tr">Teknolojiler</h2>
         <h2 class="section-title" lang="en">Technologies</h2>
@@ -550,10 +541,8 @@
             <span lang="en">Tools and technologies I use to bring ideas to life</span>
         </p>
 
-        <!-- Scrolling strip -->
         <div class="tech-strip-wrapper">
             <div class="tech-strip" id="techStrip">
-                <!-- set 1 -->
                 <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JS"> JavaScript</div>
                 <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP"> PHP</div>
                 <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python"> Python</div>
@@ -565,7 +554,6 @@
                 <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5"> HTML5</div>
                 <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3"> CSS3</div>
                 <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/expo/expo-original.svg" alt="Expo" style="filter: var(--expo-filter)"> Expo</div>
-                <!-- set 2 duplicate for seamless loop -->
                 <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JS"> JavaScript</div>
                 <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP"> PHP</div>
                 <div class="tech-chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python"> Python</div>
@@ -581,11 +569,9 @@
         </div>
     </section>
 
-    <!-- İLETİŞİM -->
     <section id="contact" style="text-align: center;">
         <h2 class="section-title" lang="tr">İletişime Geç</h2><h2 class="section-title" lang="en">Get in Touch</h2>
 
-        <!-- İletişim linkleri -->
         <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-bottom: 40px;">
             <a href="mailto:pinarkrkpnr24@gmail.com" style="display:flex; align-items:center; gap:10px; padding: 14px 24px; background: var(--glass); border: 1px solid rgba(241,39,226,0.15); border-radius: 14px; text-decoration: none; color: inherit; font-weight: 600; font-size: 14px; transition: 0.3s;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='rgba(241,39,226,0.15)'">
                 <i class="fas fa-envelope" style="color: var(--primary); font-size: 18px;"></i>
